@@ -4,6 +4,7 @@
     package="com.example.countryapp">
 <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name=".CountryApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

@@ -1,7 +1,7 @@
-package com.example.countryapp.domain.use_cases
+package com.example.countryapp.data.repository.use_cases
 
 import com.example.countryapp.data.remote.dto.countrydetaildto.toCountryDetail
-import com.example.countryapp.domain.model.CountryDetail
+import com.example.countryapp.data.repository.model.CountryDetail
 import com.example.countryapp.domain.repository.CountryRepository
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Constants.IOERRORMESSAGE
@@ -10,8 +10,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
-class GetCountryCapital(private val repository: CountryRepository) {
+class GetCountryCapital @Inject constructor
+    (private val repository: CountryRepository) {
     operator fun invoke(capital:List<String>): Flow<Resource<CountryDetail>> = flow {
         try {
             emit(Resource.Loading())

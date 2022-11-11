@@ -1,7 +1,7 @@
-package com.example.countryapp.domain.use_cases
+package com.example.countryapp.data.repository.use_cases
 
 import com.example.countryapp.data.remote.dto.countrydto.toCountry
-import com.example.countryapp.domain.model.Country
+import com.example.countryapp.data.repository.model.Country
 import com.example.countryapp.domain.repository.CountryRepository
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Constants.IOERRORMESSAGE
@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
 /**
  * This class has only one public function,i.e to execute the use case function
@@ -23,7 +24,10 @@ import java.io.IOException
  */
 
 
-class GetCountriesUseCase(private val repository: CountryRepository) {
+class GetCountriesUseCase @Inject constructor
+    (private val repository: CountryRepository) {
+
+   // private val repository1: CountryRepository = CountryRepositoryImp(api = RetrofitInstance.api)
 
     operator fun invoke(): Flow<Resource<List<Country>>> = flow {
         try {
@@ -34,6 +38,7 @@ class GetCountriesUseCase(private val repository: CountryRepository) {
             emit(Resource.Success(data = countries))
         }
         catch (e: HttpException) {
+            e.printStackTrace()
             emit(Resource.Error(message = e.localizedMessage ?: HTTPERRORMESSAGE))
         }
         catch (e: IOException){

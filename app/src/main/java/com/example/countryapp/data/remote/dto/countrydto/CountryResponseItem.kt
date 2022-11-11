@@ -1,7 +1,7 @@
 package com.example.countryapp.data.remote.dto.countrydto
 
 
-import com.example.countryapp.domain.model.Country
+import com.example.countryapp.data.repository.model.Country
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -88,7 +88,7 @@ data class CountryResponseItem(
 
 //Extension function to map the DTO from API to normal Country that can be used in the UI
 //It's an extension fun to easily map the API result to custom display and emit it.
-fun CountryResponseItem.toCountry(): Country{
+fun CountryResponseItem.toCountry(): Country {
     return Country(
         capital = capital,
         flagEmoji = flag,

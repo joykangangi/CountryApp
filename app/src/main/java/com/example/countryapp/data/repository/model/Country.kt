@@ -1,4 +1,4 @@
-package com.example.countryapp.domain.model
+package com.example.countryapp.data.repository.model
 
 import com.example.countryapp.data.remote.dto.countrydto.Currencies
 import com.example.countryapp.data.remote.dto.countrydto.Idd

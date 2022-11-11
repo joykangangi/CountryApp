@@ -1,9 +1,7 @@
-package com.example.countryapp.domain.use_cases
+package com.example.countryapp.data.repository.use_cases
 
 import com.example.countryapp.data.remote.dto.countrydetaildto.toCountryDetail
-import com.example.countryapp.data.remote.dto.countrydto.toCountry
-import com.example.countryapp.domain.model.Country
-import com.example.countryapp.domain.model.CountryDetail
+import com.example.countryapp.data.repository.model.CountryDetail
 import com.example.countryapp.domain.repository.CountryRepository
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Constants.IOERRORMESSAGE
@@ -12,6 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
 /**
  * To retrieve ONE country
@@ -20,7 +19,8 @@ import java.io.IOException
  */
 
 
-class GetCountryUseCase(private val repository: CountryRepository) {
+class GetCountryUseCase @Inject constructor
+    (private val repository: CountryRepository) {
 
     operator fun invoke(name: String): Flow<Resource<CountryDetail>> = flow{
         try {
