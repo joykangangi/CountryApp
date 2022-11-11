@@ -25,6 +25,7 @@ import com.example.countryapp.data.remote.dto.countrydto.CountryResponseItem
 
 interface CountryRepository {
     suspend fun getCountries(): CountryResponse
+
     suspend fun getCountryByName(name: String): CountryDetailResponseItem
     suspend fun getCountryByRegion(region: String): CountryDetailResponse
     suspend fun getCountryBySubRegion(subReg: String): CountryDetailResponse
