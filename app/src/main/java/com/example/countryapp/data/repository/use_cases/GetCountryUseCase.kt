@@ -13,7 +13,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 /**
- * To retrieve ONE country
+ * To retrieve ONE country;name will be like its id
  * no need to use map since the returned obj isn't a list
  * we emit objects of the form defined in the custom data classes not api response
  */

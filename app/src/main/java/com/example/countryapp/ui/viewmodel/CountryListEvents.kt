@@ -5,5 +5,5 @@ package com.example.countryapp.ui.viewmodel
  */
 sealed class CountryListEvents {
     data class OnSearchQueryChange(val query: String): CountryListEvents()
-    data class OnSelectFilter(val tag: String): CountryListEvents()
+    data class OnSelectFilter(val tag: List<String>): CountryListEvents()
 }
