@@ -34,7 +34,7 @@ Each class has only one public function,i.e to execute the use case function
  * Specifying an invoke operator on a class allows it to be called/executed on any instances of the class without a method name.
  * The return type of the function is Flow -> emit multiple values over a period time, i.e wrapped in the Resource(Success/Error/Loading)
  * e.g -if an error occurs, it will be emitted here,
- *     -if a success occurs, attach the data fetched(ArrayList of Countries) and emit it
+ *     -if a success occurs, attach the data fetched(List of Countries) and emit it
  * HttpException- what to do in case of error/ Http codes except those starting with 2 (successes)
  * IOException - what to do if the api can't connect to the remote server e.g when device isn't connected to the internet
 
@@ -46,15 +46,15 @@ Each class has only one public function,i.e to execute the use case function
  This contains the screens to be displayed as well as the logic used to display the screen, e.g `viewmodel` and state management.
  
  ### Libraries Used
- [Retrofit](https://square.github.io/retrofit/) - This is a type-safe client for Android which makes it easier to consume RESTful web services/ connect to the network.
- [Moshi Converter](https://github.com/square/moshi) - This helps in serialization and deserialization of code. The `generateAdter = true` helps in creating an adapter for the data classes generated.
+ - [Retrofit](https://square.github.io/retrofit/) - This is a type-safe client for Android which makes it easier to consume RESTful web services/ connect to the network.
+ - [Moshi Converter](https://github.com/square/moshi) - This helps in serialization and deserialization of code. The `generateAdter = true` helps in creating an adapter for the data classes generated.
  The codegen is used since if not employed Moshi works by coincidence with just standard Java reflection which is error prone. Therefore, in codegen, the generated adapters are Kotlin themselves which are fast.
  Codegen allows generating code at compile time, so they can perform serialization and deserialization using reflection, that is why it is fast.
- [Coroutines](https://kotlinlang.org/docs/coroutines-basics.html) - This helps in writing asynchronous code, therefore allowing heavy operations , e.g fetching data from API to be done on a background thread avoiding screen lag.
- [Navigation](https://developer.android.com/guide/navigation/navigation-getting-started) - This enables moving from one screen to the next.
- [Coil](https://coil-kt.github.io/coil/compose/) - This helps in image loading from the network.
- [Hilt](https://dagger.dev/hilt/) - It is a library for Android that reduces the boilerplate of using manual DI in your project. It decouples code and makes it easier to test in future.
+ - [Coroutines](https://kotlinlang.org/docs/coroutines-basics.html) - This helps in writing asynchronous code, therefore allowing heavy operations , e.g fetching data from API to be done on a background thread avoiding screen lag.
+ - [Navigation](https://developer.android.com/guide/navigation/navigation-getting-started) - This enables moving from one screen to the next.
+ - [Coil](https://coil-kt.github.io/coil/compose/) - This helps in image loading from the network.
+ - [Hilt](https://dagger.dev/hilt/) - It is a library for Android that reduces the boilerplate of using manual DI in your project. It decouples code and makes it easier to test in future.
  
  ### Links
- [Appetize Link](https://appetize.io/app/shoh77pngltq3uiytdbgx4vryy)
- [Google Link with APK]
+ - [Appetize Link](https://appetize.io/app/shoh77pngltq3uiytdbgx4vryy)
+ - [Google Link with APK](https://drive.google.com/file/d/1DzsBIQoPjvZowADtGweuIL78tPir44d3/view?usp=sharing)
