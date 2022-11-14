@@ -20,6 +20,7 @@ import com.example.countryapp.ui.theme.CountryAppTheme
 import com.example.countryapp.ui.viewmodel.countrydetail.CountryDetailScreen
 import com.example.countryapp.ui.viewmodel.countrylist.CountryListScreen
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 
 
 @AndroidEntryPoint

@@ -7,309 +7,309 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Languages(
     @Json(name = "afr")
-    val afr: String,
+    val afr: String?,
     @Json(name = "amh")
-    val amh: String,
+    val amh: String?,
     @Json(name = "ara")
-    val ara: String,
+    val ara: String?,
     @Json(name = "arc")
-    val arc: String,
+    val arc: String?,
     @Json(name = "aym")
-    val aym: String,
+    val aym: String?,
     @Json(name = "aze")
-    val aze: String,
+    val aze: String?,
     @Json(name = "bar")
-    val bar: String,
+    val bar: String?,
     @Json(name = "bel")
-    val bel: String,
+    val bel: String?,
     @Json(name = "ben")
-    val ben: String,
+    val ben: String?,
     @Json(name = "ber")
-    val ber: String,
+    val ber: String?,
     @Json(name = "bis")
-    val bis: String,
+    val bis: String?,
     @Json(name = "bjz")
-    val bjz: String,
+    val bjz: String?,
     @Json(name = "bos")
-    val bos: String,
+    val bos: String?,
     @Json(name = "bul")
-    val bul: String,
+    val bul: String?,
     @Json(name = "bwg")
-    val bwg: String,
+    val bwg: String?,
     @Json(name = "cal")
-    val cal: String,
+    val cal: String?,
     @Json(name = "cat")
-    val cat: String,
+    val cat: String?,
     @Json(name = "ces")
-    val ces: String,
+    val ces: String?,
     @Json(name = "cha")
-    val cha: String,
+    val cha: String?,
     @Json(name = "ckb")
-    val ckb: String,
+    val ckb: String?,
     @Json(name = "cnr")
-    val cnr: String,
+    val cnr: String?,
     @Json(name = "crs")
-    val crs: String,
+    val crs: String?,
     @Json(name = "dan")
-    val dan: String,
+    val dan: String?,
     @Json(name = "deu")
-    val deu: String,
+    val deu: String?,
     @Json(name = "div")
-    val div: String,
+    val div: String?,
     @Json(name = "dzo")
-    val dzo: String,
+    val dzo: String?,
     @Json(name = "ell")
-    val ell: String,
+    val ell: String?,
     @Json(name = "eng")
-    val eng: String,
+    val eng: String?,
     @Json(name = "est")
-    val est: String,
+    val est: String?,
     @Json(name = "fao")
-    val fao: String,
+    val fao: String?,
     @Json(name = "fas")
-    val fas: String,
+    val fas: String?,
     @Json(name = "fij")
-    val fij: String,
+    val fij: String?,
     @Json(name = "fil")
-    val fil: String,
+    val fil: String?,
     @Json(name = "fin")
-    val fin: String,
+    val fin: String?,
     @Json(name = "fra")
-    val fra: String,
+    val fra: String?,
     @Json(name = "gil")
-    val gil: String,
+    val gil: String?,
     @Json(name = "gle")
-    val gle: String,
+    val gle: String?,
     @Json(name = "glv")
-    val glv: String,
+    val glv: String?,
     @Json(name = "grn")
-    val grn: String,
+    val grn: String?,
     @Json(name = "gsw")
-    val gsw: String,
+    val gsw: String?,
     @Json(name = "hat")
-    val hat: String,
+    val hat: String?,
     @Json(name = "heb")
-    val heb: String,
+    val heb: String?,
     @Json(name = "her")
-    val her: String,
+    val her: String?,
     @Json(name = "hgm")
-    val hgm: String,
+    val hgm: String?,
     @Json(name = "hif")
-    val hif: String,
+    val hif: String?,
     @Json(name = "hin")
-    val hin: String,
+    val hin: String?,
     @Json(name = "hmo")
-    val hmo: String,
+    val hmo: String?,
     @Json(name = "hrv")
-    val hrv: String,
+    val hrv: String?,
     @Json(name = "hun")
-    val hun: String,
+    val hun: String?,
     @Json(name = "hye")
-    val hye: String,
+    val hye: String?,
     @Json(name = "ind")
-    val ind: String,
+    val ind: String?,
     @Json(name = "isl")
-    val isl: String,
+    val isl: String?,
     @Json(name = "ita")
-    val ita: String,
+    val ita: String?,
     @Json(name = "jam")
-    val jam: String,
+    val jam: String?,
     @Json(name = "jpn")
-    val jpn: String,
+    val jpn: String?,
     @Json(name = "kal")
-    val kal: String,
+    val kal: String?,
     @Json(name = "kat")
-    val kat: String,
+    val kat: String?,
     @Json(name = "kaz")
-    val kaz: String,
+    val kaz: String?,
     @Json(name = "kck")
-    val kck: String,
+    val kck: String?,
     @Json(name = "khi")
-    val khi: String,
+    val khi: String?,
     @Json(name = "khm")
-    val khm: String,
+    val khm: String?,
     @Json(name = "kin")
-    val kin: String,
+    val kin: String?,
     @Json(name = "kir")
-    val kir: String,
+    val kir: String?,
     @Json(name = "kon")
-    val kon: String,
+    val kon: String?,
     @Json(name = "kor")
-    val kor: String,
+    val kor: String?,
     @Json(name = "kwn")
-    val kwn: String,
+    val kwn: String?,
     @Json(name = "lao")
-    val lao: String,
+    val lao: String?,
     @Json(name = "lat")
-    val lat: String,
+    val lat: String?,
     @Json(name = "lav")
-    val lav: String,
+    val lav: String?,
     @Json(name = "lin")
-    val lin: String,
+    val lin: String?,
     @Json(name = "lit")
-    val lit: String,
+    val lit: String?,
     @Json(name = "loz")
-    val loz: String,
+    val loz: String?,
     @Json(name = "ltz")
-    val ltz: String,
+    val ltz: String?,
     @Json(name = "lua")
-    val lua: String,
+    val lua: String?,
     @Json(name = "mah")
-    val mah: String,
+    val mah: String?,
     @Json(name = "mey")
-    val mey: String,
+    val mey: String?,
     @Json(name = "mfe")
-    val mfe: String,
+    val mfe: String?,
     @Json(name = "mkd")
-    val mkd: String,
+    val mkd: String?,
     @Json(name = "mlg")
-    val mlg: String,
+    val mlg: String?,
     @Json(name = "mlt")
-    val mlt: String,
+    val mlt: String?,
     @Json(name = "mon")
-    val mon: String,
+    val mon: String?,
     @Json(name = "mri")
-    val mri: String,
+    val mri: String?,
     @Json(name = "msa")
-    val msa: String,
+    val msa: String?,
     @Json(name = "mya")
-    val mya: String,
+    val mya: String?,
     @Json(name = "nau")
-    val nau: String,
+    val nau: String?,
     @Json(name = "nbl")
-    val nbl: String,
+    val nbl: String?,
     @Json(name = "ndc")
-    val ndc: String,
+    val ndc: String?,
     @Json(name = "nde")
-    val nde: String,
+    val nde: String?,
     @Json(name = "ndo")
-    val ndo: String,
+    val ndo: String?,
     @Json(name = "nep")
-    val nep: String,
+    val nep: String?,
     @Json(name = "nfr")
-    val nfr: String,
+    val nfr: String?,
     @Json(name = "niu")
-    val niu: String,
+    val niu: String?,
     @Json(name = "nld")
-    val nld: String,
+    val nld: String?,
     @Json(name = "nno")
-    val nno: String,
+    val nno: String?,
     @Json(name = "nob")
-    val nob: String,
+    val nob: String?,
     @Json(name = "nor")
-    val nor: String,
+    val nor: String?,
     @Json(name = "nrf")
-    val nrf: String,
+    val nrf: String?,
     @Json(name = "nso")
-    val nso: String,
+    val nso: String?,
     @Json(name = "nya")
-    val nya: String,
+    val nya: String?,
     @Json(name = "nzs")
-    val nzs: String,
+    val nzs: String?,
     @Json(name = "pap")
-    val pap: String,
+    val pap: String?,
     @Json(name = "pau")
-    val pau: String,
+    val pau: String?,
     @Json(name = "pih")
-    val pih: String,
+    val pih: String?,
     @Json(name = "pol")
-    val pol: String,
+    val pol: String?,
     @Json(name = "por")
-    val por: String,
+    val por: String?,
     @Json(name = "pov")
-    val pov: String,
+    val pov: String?,
     @Json(name = "prs")
-    val prs: String,
+    val prs: String?,
     @Json(name = "pus")
-    val pus: String,
+    val pus: String?,
     @Json(name = "que")
-    val que: String,
+    val que: String?,
     @Json(name = "rar")
-    val rar: String,
+    val rar: String?,
     @Json(name = "roh")
-    val roh: String,
+    val roh: String?,
     @Json(name = "ron")
-    val ron: String,
+    val ron: String?,
     @Json(name = "run")
-    val run: String,
+    val run: String?,
     @Json(name = "rus")
-    val rus: String,
+    val rus: String?,
     @Json(name = "sag")
-    val sag: String,
+    val sag: String?,
     @Json(name = "sin")
-    val sin: String,
+    val sin: String?,
     @Json(name = "slk")
-    val slk: String,
+    val slk: String?,
     @Json(name = "slv")
-    val slv: String,
+    val slv: String?,
     @Json(name = "smi")
-    val smi: String,
+    val smi: String?,
     @Json(name = "smo")
-    val smo: String,
+    val smo: String?,
     @Json(name = "sna")
-    val sna: String,
+    val sna: String?,
     @Json(name = "som")
-    val som: String,
+    val som: String?,
     @Json(name = "sot")
-    val sot: String,
+    val sot: String?,
     @Json(name = "spa")
-    val spa: String,
+    val spa: String?,
     @Json(name = "sqi")
-    val sqi: String,
+    val sqi: String?,
     @Json(name = "srp")
-    val srp: String,
+    val srp: String?,
     @Json(name = "ssw")
-    val ssw: String,
+    val ssw: String?,
     @Json(name = "swa")
-    val swa: String,
+    val swa: String?,
     @Json(name = "swe")
-    val swe: String,
+    val swe: String?,
     @Json(name = "tam")
-    val tam: String,
+    val tam: String?,
     @Json(name = "tet")
-    val tet: String,
+    val tet: String?,
     @Json(name = "tgk")
-    val tgk: String,
+    val tgk: String?,
     @Json(name = "tha")
-    val tha: String,
+    val tha: String?,
     @Json(name = "tir")
-    val tir: String,
+    val tir: String?,
     @Json(name = "tkl")
-    val tkl: String,
+    val tkl: String?,
     @Json(name = "toi")
-    val toi: String,
+    val toi: String?,
     @Json(name = "ton")
-    val ton: String,
+    val ton: String?,
     @Json(name = "tpi")
-    val tpi: String,
+    val tpi: String?,
     @Json(name = "tsn")
-    val tsn: String,
+    val tsn: String?,
     @Json(name = "tso")
-    val tso: String,
+    val tso: String?,
     @Json(name = "tuk")
-    val tuk: String,
+    val tuk: String?,
     @Json(name = "tur")
-    val tur: String,
+    val tur: String?,
     @Json(name = "tvl")
-    val tvl: String,
+    val tvl: String?,
     @Json(name = "ukr")
-    val ukr: String,
+    val ukr: String?,
     @Json(name = "urd")
-    val urd: String,
+    val urd: String?,
     @Json(name = "uzb")
-    val uzb: String,
+    val uzb: String?,
     @Json(name = "ven")
-    val ven: String,
+    val ven: String?,
     @Json(name = "vie")
-    val vie: String,
+    val vie: String?,
     @Json(name = "xho")
-    val xho: String,
+    val xho: String?,
     @Json(name = "zdj")
-    val zdj: String,
+    val zdj: String?,
     @Json(name = "zho")
-    val zho: String,
+    val zho: String?,
     @Json(name = "zib")
-    val zib: String,
+    val zib: String?,
     @Json(name = "zul")
-    val zul: String
+    val zul: String?
 )

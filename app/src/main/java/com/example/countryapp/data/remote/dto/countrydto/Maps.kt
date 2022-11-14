@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Maps(
     @Json(name = "googleMaps")
-    val googleMaps: String,
+    val googleMaps: String?,
     @Json(name = "openStreetMaps")
-    val openStreetMaps: String
+    val openStreetMaps: String?
 )

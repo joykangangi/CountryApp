@@ -1,11 +1,8 @@
 package com.example.countryapp.domain.repository
 
-import com.example.countryapp.data.remote.dto.countrydetaildto.CountryDetailResponse
-import com.example.countryapp.data.remote.dto.countrydetaildto.CountryDetailResponseItem
-import com.example.countryapp.data.remote.dto.countrydetaildto.Currencies
-import com.example.countryapp.data.remote.dto.countrydetaildto.Languages
-import com.example.countryapp.data.remote.dto.countrydto.CountryResponse
 import com.example.countryapp.data.remote.dto.countrydto.CountryResponseItem
+import com.example.countryapp.data.remote.dto.countrydto.Currencies
+import com.example.countryapp.data.remote.dto.countrydto.Languages
 
 /**
  * The repository on this layer(domain) only has definitions
@@ -24,12 +21,12 @@ import com.example.countryapp.data.remote.dto.countrydto.CountryResponseItem
  */
 
 interface CountryRepository {
-    suspend fun getCountries(): CountryResponse
+    suspend fun getCountries(): List<CountryResponseItem>
 
-    suspend fun getCountryByName(name: String): CountryDetailResponseItem
-    suspend fun getCountryByRegion(region: String): CountryDetailResponse
-    suspend fun getCountryBySubRegion(subReg: String): CountryDetailResponse
-    suspend fun getCountryByCapital(capital: List<String>): CountryDetailResponseItem
-    suspend fun getCountryByLanguage(language: Languages): CountryDetailResponse
-    suspend fun getCountryByCurrency(currency: Currencies): CountryDetailResponse
+    suspend fun getCountryByName(name: String): CountryResponseItem
+    suspend fun getCountryByRegion(region: String): List<CountryResponseItem>
+    suspend fun getCountryBySubRegion(subReg: String): List<CountryResponseItem>
+    suspend fun getCountryByCapital(capital: List<String>): CountryResponseItem
+    suspend fun getCountryByLanguage(language: Languages): List<CountryResponseItem>
+    suspend fun getCountryByCurrency(currency: Currencies): List<CountryResponseItem>
 }

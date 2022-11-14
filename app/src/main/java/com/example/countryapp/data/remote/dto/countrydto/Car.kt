@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Car(
     @Json(name = "side")
-    val side: String,
+    val side: String?,
     @Json(name = "signs")
-    val signs: List<String>
+    val signs: List<String?>?
 )

@@ -1,7 +1,7 @@
 package com.example.countryapp.data.repository.use_cases
 
-import com.example.countryapp.data.remote.dto.countrydetaildto.toCountryDetail
-import com.example.countryapp.data.repository.model.CountryDetail
+import com.example.countryapp.data.remote.dto.countrydto.toCountry
+import com.example.countryapp.data.repository.model.Country
 import com.example.countryapp.domain.repository.CountryRepository
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Constants.IOERRORMESSAGE
@@ -19,14 +19,13 @@ import javax.inject.Inject
  */
 
 
-class GetCountryUseCase @Inject constructor
-    (private val repository: CountryRepository) {
+class GetCountryUseCase @Inject constructor(private val repository: CountryRepository) {
 
-    operator fun invoke(name: String): Flow<Resource<CountryDetail>> = flow{
+    operator fun invoke(name: String): Flow<Resource<Country>> = flow{
         try {
             emit(Resource.Loading())
             repository.getCountries()
-            val country = repository.getCountryByName(name = name).toCountryDetail()
+            val country = repository.getCountryByName(name = name).toCountry()
             emit(Resource.Success(country))
         }catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: HTTPERRORMESSAGE))

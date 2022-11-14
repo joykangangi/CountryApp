@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Idd(
     @Json(name = "root")
-    val root: String,
+    val root: String?,
     @Json(name = "suffixes")
-    val suffixes: List<String>
+    val suffixes: List<String?>?
 )

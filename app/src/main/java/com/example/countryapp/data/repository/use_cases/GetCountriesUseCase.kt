@@ -24,8 +24,7 @@ import javax.inject.Inject
  */
 
 
-class GetCountriesUseCase @Inject constructor
-    (private val repository: CountryRepository) {
+class GetCountriesUseCase @Inject constructor(private val repository: CountryRepository) {
 
    // private val repository1: CountryRepository = CountryRepositoryImp(api = RetrofitInstance.api)
 

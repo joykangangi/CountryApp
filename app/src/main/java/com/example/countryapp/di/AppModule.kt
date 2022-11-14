@@ -7,11 +7,11 @@ import com.example.countryapp.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 
@@ -21,7 +21,7 @@ import javax.inject.Singleton
  */
 
 @Module
-@InstallIn(Singleton::class) //all dependencies in the module live as long as the Application
+@InstallIn(SingletonComponent::class) //all dependencies in the module live as long as the Application
 object AppModule {
     @Provides
     @Singleton

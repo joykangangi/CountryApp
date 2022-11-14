@@ -1,8 +1,8 @@
 package com.example.countryapp.data.repository.use_cases
 
-import com.example.countryapp.data.remote.dto.countrydetaildto.Currencies
-import com.example.countryapp.data.remote.dto.countrydetaildto.toCountryDetail
-import com.example.countryapp.data.repository.model.CountryDetail
+import com.example.countryapp.data.remote.dto.countrydto.Currencies
+import com.example.countryapp.data.remote.dto.countrydto.toCountry
+import com.example.countryapp.data.repository.model.Country
 import com.example.countryapp.domain.repository.CountryRepository
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Constants.IOERRORMESSAGE
@@ -14,12 +14,11 @@ import java.io.IOException
 import javax.inject.Inject
 
 
-class GetCountryCurrency @Inject constructor
-    (private val repository: CountryRepository) {
-    operator fun invoke(currencies: Currencies): Flow<Resource<List<CountryDetail>>> = flow {
+class GetCountryCurrency @Inject constructor(private val repository: CountryRepository) {
+    operator fun invoke(currencies: Currencies): Flow<Resource<List<Country>>> = flow {
         try {
             emit(Resource.Loading())
-            val countryWithCurrency = repository.getCountryByCurrency(currencies).map { it.toCountryDetail() }
+            val countryWithCurrency = repository.getCountryByCurrency(currencies).map { it.toCountry() }
             emit(Resource.Success(countryWithCurrency))
         }
         catch (e: HttpException) {

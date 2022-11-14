@@ -1,7 +1,7 @@
 package com.example.countryapp.data.repository.use_cases
 
-import com.example.countryapp.data.remote.dto.countrydetaildto.toCountryDetail
-import com.example.countryapp.data.repository.model.CountryDetail
+import com.example.countryapp.data.remote.dto.countrydto.toCountry
+import com.example.countryapp.data.repository.model.Country
 import com.example.countryapp.domain.repository.CountryRepository
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Constants.IOERRORMESSAGE
@@ -12,12 +12,11 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetCountryRegion @Inject constructor
-    (private val repository: CountryRepository) {
-    operator fun invoke(region: String): Flow<Resource<List<CountryDetail>>> = flow {
+class GetCountryRegion @Inject constructor(private val repository: CountryRepository) {
+    operator fun invoke(region: String): Flow<Resource<List<Country>>> = flow {
         try {
             emit(Resource.Loading())
-            val countryInRegion = repository.getCountryByRegion(region).map { it.toCountryDetail() }
+            val countryInRegion = repository.getCountryByRegion(region).map { it.toCountry() }
             emit(Resource.Success(countryInRegion))
         }
         catch (e: HttpException) {

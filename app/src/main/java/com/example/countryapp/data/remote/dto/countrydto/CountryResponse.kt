@@ -1,4 +1,11 @@
 package com.example.countryapp.data.remote.dto.countrydto
 
 
-class CountryResponse : ArrayList<CountryResponseItem>()
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class CountryResponse(
+    @Json(name = "countries")
+    val countries: List<CountryResponseItem>
+)

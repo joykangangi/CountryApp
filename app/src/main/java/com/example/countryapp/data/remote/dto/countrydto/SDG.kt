@@ -7,5 +7,5 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class SDG(
     @Json(name = "name")
-    val name: String
+    val name: String?
 )

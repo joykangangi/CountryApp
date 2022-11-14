@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Demonyms(
     @Json(name = "eng")
-    val eng: Eng,
+    val eng: Eng?,
     @Json(name = "fra")
-    val fra: Fra
+    val fra: Fra?
 )

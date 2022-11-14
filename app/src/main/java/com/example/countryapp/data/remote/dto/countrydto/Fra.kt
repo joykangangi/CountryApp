@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Fra(
     @Json(name = "f")
-    val f: String,
+    val f: String?,
     @Json(name = "m")
-    val m: String
+    val m: String?
 )

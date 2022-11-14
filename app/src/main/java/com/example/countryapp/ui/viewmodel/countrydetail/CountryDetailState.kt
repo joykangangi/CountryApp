@@ -1,10 +1,10 @@
 package com.example.countryapp.ui.viewmodel.countrydetail
 
-import com.example.countryapp.data.repository.model.CountryDetail
+import com.example.countryapp.data.repository.model.Country
 
 data class CountryDetailState(
-    val country: CountryDetail? = null,
+    val country: Country? = null,
     val error: String = "",
     val isLoading: Boolean = false,
 
-)
+    )

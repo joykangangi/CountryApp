@@ -7,9 +7,9 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Name(
     @Json(name = "common")
-    val common: String,
+    val common: String?,
     @Json(name = "nativeName")
-    val nativeName: NativeName,
+    val nativeName: NativeName?,
     @Json(name = "official")
     val official: String
 )

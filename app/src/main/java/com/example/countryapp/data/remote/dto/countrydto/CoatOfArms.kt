@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class CoatOfArms(
     @Json(name = "png")
-    val png: String,
+    val png: String?,
     @Json(name = "svg")
-    val svg: String
+    val svg: String?
 )

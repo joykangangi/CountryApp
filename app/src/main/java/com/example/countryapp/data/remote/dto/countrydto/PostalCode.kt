@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class PostalCode(
     @Json(name = "format")
-    val format: String,
+    val format: String?,
     @Json(name = "regex")
-    val regex: String
+    val regex: String?
 )
