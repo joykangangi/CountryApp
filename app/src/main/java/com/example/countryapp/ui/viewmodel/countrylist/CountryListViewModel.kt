@@ -30,6 +30,8 @@ class CountryListViewModel @Inject constructor
     private var _state = mutableStateOf(CountryListState())
     val state: State<CountryListState> = _state
 
+    private var _detailState = mutableStateOf(CountryDetailState())
+    val detailState: State<CountryDetailState> = _detailState
     private val filteredList = mutableListOf<Country>()
 
 
@@ -63,7 +65,7 @@ class CountryListViewModel @Inject constructor
     fun getEvent(event: CountryListEvents) {
         when (event) {
             is CountryListEvents.OnSearchQueryChange -> {
-                _state.value = _state.value.copy()
+                _state.value = _state.value.copy(searchQuery = event.query)
                 searchJob?.cancel() //if it a job already exits we cancel the job
                 searchJob = viewModelScope.launch {
                     delay(DELAY)
@@ -83,12 +85,15 @@ class CountryListViewModel @Inject constructor
         viewModelScope.launch {
             val newCountryList: List<Country> =
                 filteredList.filter {country ->
-                    country.name.contains(query)
+                    country.name.lowercase().contains(query)
                 }
 
             _state.value = _state.value.copy(countries = newCountryList.sortedBy {
                 it.name }.groupBy { it.name[0] })
         }
+    }
+    fun setSelectedCountry(country: Country) {
+        _detailState.value = CountryDetailState(country = country)
     }
 
 }

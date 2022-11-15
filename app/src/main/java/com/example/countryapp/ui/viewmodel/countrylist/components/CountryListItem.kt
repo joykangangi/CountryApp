@@ -21,12 +21,13 @@ import com.example.countryapp.data.repository.model.Country
 @Composable
 fun CountryListItem(
     country: Country,
-    onItemClick: (Country) -> Unit
+    modifier: Modifier = Modifier,
+    onCountryClicked: (Country) -> Unit
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .clickable { onItemClick(country) }
+            .clickable { onCountryClicked(country) }
             .padding(20.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

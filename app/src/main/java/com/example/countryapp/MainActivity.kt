@@ -12,9 +12,12 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.countryapp.ui.navigation.Screen
 import com.example.countryapp.ui.theme.CountryAppTheme
 import com.example.countryapp.ui.viewmodel.countrydetail.CountryDetailScreen
@@ -44,40 +47,13 @@ class MainActivity : ComponentActivity() {
 fun CountryApp() {
 
     val navController = rememberNavController()
-    var canPop by remember { mutableStateOf(false) }
-    var showThemeMenu by remember { mutableStateOf(false) }
-    var filterMenuExpanded by remember { mutableStateOf(false) }
-
     var appTitle by remember { mutableStateOf("") }
 
-    navController.addOnDestinationChangedListener { controller, _, _ ->
-        canPop = controller.previousBackStackEntry != null
-    }
-
-    val navigationIcon: (@Composable () -> Unit)? =
-        if (canPop) {
-            {
-                IconButton(onClick = { navController.popBackStack() }) {
-                    Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
-                }
-            }
-        } else {
-            null
-        }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(appTitle) },
-                navigationIcon = navigationIcon,
-                actions = {
-                    if (showThemeMenu) { // set from the screens by onThemeMenu event
-                    }
-
-                    // menu must be inside the IconButton to dock in proper position
-
-                }
-
+                title = { Text(appTitle) }
             )
         },
         content = {
@@ -88,10 +64,10 @@ fun CountryApp() {
                 composable(Screen.CountryListScreen.route) {
                     CountryListScreen(
                         navController,
-                        onSetTitle = { appTitle = it },
-                        onShowThemeMenu = { showThemeMenu = it })
+                        onSetTitle = { appTitle = it }
+                    )
                 }
-                composable(Screen.CountryListScreen.route + "/{name}") { backStackEntry ->
+                composable(Screen.CountryDetailScreen.route + "/{name}") { backStack->
                     CountryDetailScreen(
                         onSetTitle = { appTitle = it },
                         modifier = Modifier.padding(paddingValues = it)

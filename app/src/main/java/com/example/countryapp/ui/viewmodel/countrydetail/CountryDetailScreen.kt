@@ -25,18 +25,17 @@ import com.example.countryapp.data.repository.model.Country
 
 @Composable
 fun CountryDetailScreen(
+    modifier: Modifier = Modifier,
     viewModel: CountryDetailViewModel = hiltViewModel(),
-    onSetTitle: (String) -> Unit,
-    modifier: Modifier = Modifier
+    onSetTitle: (String) -> Unit
 ) {
-    val appTitle = stringResource(id = R.string.explore)
     val state = viewModel.state.value
 
     LaunchedEffect(Unit) {
         state.country?.name?.let { onSetTitle(it) }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = modifier.fillMaxWidth()) {
         state.country?.let { countryDetail: Country ->
             Column(
                 modifier = Modifier
@@ -46,11 +45,11 @@ fun CountryDetailScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 AsyncImage(
-                    model = countryDetail.flags,
+                    model = countryDetail.coatOfArms,
                     contentDescription = null,
                     alignment = Alignment.Center,
                     modifier = Modifier
-                        .size(100.dp)
+                        .size(70.dp)
                         .padding(bottom = 16.dp)
 
                 )
@@ -62,7 +61,7 @@ fun CountryDetailScreen(
                     placeholder = painterResource(R.drawable.ic_placeholder),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(100.dp)
+                    modifier = Modifier.size(70.dp)
                         .padding(bottom = 16.dp)
                 )
                 Divider()

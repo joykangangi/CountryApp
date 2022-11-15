@@ -24,18 +24,12 @@ import androidx.compose.runtime.mutableStateOf as mutableStateOf
 
 @Composable
 fun SearchViewBar(
-    searchQuery: String = "",
+    searchQuery: String ,
     onSearchQueryChange: (String) -> Unit
 ) {
 
-    var query by remember { mutableStateOf(searchQuery)}
-    val showClearIcon by rememberSaveable {
-        mutableStateOf(searchQuery.isNotEmpty())
-    }
-
-
-    TextField(
-        value = query,
+    OutlinedTextField(
+        value = searchQuery,
         onValueChange = {
             onSearchQueryChange(it)
         },
@@ -46,21 +40,10 @@ fun SearchViewBar(
                 contentDescription = "search Icon",
             )
         },
-        trailingIcon = {
-            if (showClearIcon) {
-                IconButton(onClick = { query = "" }) {
-                    Icon(
-                        imageVector = Icons.Rounded.Clear,
-                        tint = MaterialTheme.colors.onBackground,
-                        contentDescription = "Cancel search"
-                    )
-                }
-            }
-        },
         maxLines = 1,
         colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.Transparent),
         placeholder = { Text(text = "Search Country") },
-        textStyle = MaterialTheme.typography.subtitle1,
+        textStyle = MaterialTheme.typography.subtitle2,
         singleLine = true,
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,

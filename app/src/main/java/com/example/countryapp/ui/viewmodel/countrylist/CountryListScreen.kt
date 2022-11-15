@@ -13,6 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -28,17 +29,16 @@ import com.example.countryapp.ui.viewmodel.countrylist.components.SearchViewBar
 @Composable
 fun CountryListScreen(
     navController: NavController,
-
     viewModel: CountryListViewModel = hiltViewModel(),
     onSetTitle: (String) -> Unit,
-    onShowThemeMenu: (Boolean) -> Unit
+   // onShowThemeMenu: (Boolean) -> Unit
 ) {
     val appTitle = stringResource(id = R.string.explore)
     val state = viewModel.state.value
 
     LaunchedEffect(Unit) {
         onSetTitle(appTitle)
-        onShowThemeMenu(true)
+       // onShowThemeMenu(true)
     }
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         SearchViewBar(searchQuery = state.searchQuery) { query ->
@@ -53,7 +53,7 @@ fun CountryListScreen(
                 state.countries?.forEach { (initial, countries) ->
                     item {
                         Text(
-                            text = initial.toString(), style = MaterialTheme.typography.body2,
+                            text = initial.toString(), style = MaterialTheme.typography.body2, fontWeight = FontWeight.Bold,
                             modifier = Modifier
                                 .padding(
                                     start = 4.dp,
@@ -64,13 +64,12 @@ fun CountryListScreen(
                         )
                     }
 
-                    items(countries) { country: Country->
-                        CountryListItem(
-                        country = country,
-                        onItemClick = {
-                            navController.navigate(Screen.CountryDetailScreen.route + "/${country.name}")
+                    items(countries) { country: Country ->
+                        CountryListItem(country = country) {
+                            viewModel.setSelectedCountry(country)
+
+                            navController.navigate(Screen.CountryDetailScreen.route + "/${it.name}")
                         }
-                        )
                     }
                 }
             }
