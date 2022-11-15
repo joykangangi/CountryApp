@@ -56,5 +56,5 @@ Each class has only one public function,i.e to execute the use case function
  - [Hilt](https://dagger.dev/hilt/) - It is a library for Android that reduces the boilerplate of using manual DI in your project. It decouples code and makes it easier to test in future.
  
  ### Links
- - [Appetize Link](https://appetize.io/app/shoh77pngltq3uiytdbgx4vryy)
- - [Google Link with APK](https://drive.google.com/file/d/1DzsBIQoPjvZowADtGweuIL78tPir44d3/view?usp=sharing)
+ - [Appetize Link](https://appetize.io/app/6sb76yokly4ppcegmsxhoexjvm)
+ - [Google Link with APK](https://drive.google.com/file/d/1jaW8i4_WnI0lNvsjEyRVkuilc26TMGM-/view?usp=sharing)
