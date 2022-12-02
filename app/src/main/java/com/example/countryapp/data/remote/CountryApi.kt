@@ -1,11 +1,9 @@
 package com.example.countryapp.data.remote
 
 
-import com.example.countryapp.data.remote.dto.countrydto.CountryResponse
 import com.example.countryapp.data.remote.dto.countrydto.CountryResponseItem
 import com.example.countryapp.data.remote.dto.countrydto.Currencies
 import com.example.countryapp.data.remote.dto.countrydto.Languages
-import org.intellij.lang.annotations.Language
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -28,7 +26,7 @@ interface CountryApi {
     suspend fun getAllCountries(): List<CountryResponseItem>
 
     @GET("/v3.1/name/{name}")
-    suspend fun getCountryByName(@Path("name") officialName: String):CountryResponseItem
+    suspend fun getCountryByName(@Path("name") officialName: String):List<CountryResponseItem>
 
     @GET("/v3.1/currency/{currency}")
     suspend fun getCountryByCurrency(@Path("currency") currency: Currencies): List<CountryResponseItem>

@@ -67,7 +67,6 @@ fun CountryListScreen(
                     items(countries) { country: Country ->
                         CountryListItem(country = country) {
                             viewModel.setSelectedCountry(country)
-
                             navController.navigate(Screen.CountryDetailScreen.route + "/${it.name}")
                         }
                     }

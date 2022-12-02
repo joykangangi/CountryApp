@@ -1,7 +1,6 @@
 package com.example.countryapp.data.repository
 
 import com.example.countryapp.data.remote.CountryApi
-import com.example.countryapp.data.remote.dto.countrydto.CountryResponse
 import com.example.countryapp.data.remote.dto.countrydto.CountryResponseItem
 import com.example.countryapp.data.remote.dto.countrydto.Currencies
 import com.example.countryapp.data.remote.dto.countrydto.Languages
@@ -15,7 +14,7 @@ class CountryRepositoryImp(private val api: CountryApi): CountryRepository {
         return api.getAllCountries()
     }
 
-    override suspend fun getCountryByName(name: String): CountryResponseItem {
+    override suspend fun getCountryByName(name: String): List<CountryResponseItem> {
         return api.getCountryByName(name)
     }
 

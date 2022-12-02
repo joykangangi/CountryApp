@@ -82,7 +82,7 @@ data class CountryResponseItem(
 fun CountryResponseItem.toCountry(): Country {
     return Country(
         flagEmoji = flags.png,
-        name = name.official,
+        name = name.common ?: "",
         capital = capital ?: listOf("N/A"),
         area = area,
         carSide = car?.side,

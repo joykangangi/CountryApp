@@ -25,7 +25,7 @@ class GetCountryUseCase @Inject constructor(private val repository: CountryRepos
         try {
             emit(Resource.Loading())
             repository.getCountries()
-            val country = repository.getCountryByName(name = name).toCountry()
+            val country = repository.getCountryByName(name = name).map { it.toCountry() }.get(0)
             emit(Resource.Success(country))
         }catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: HTTPERRORMESSAGE))

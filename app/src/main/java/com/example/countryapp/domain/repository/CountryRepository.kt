@@ -23,7 +23,7 @@ import com.example.countryapp.data.remote.dto.countrydto.Languages
 interface CountryRepository {
     suspend fun getCountries(): List<CountryResponseItem>
 
-    suspend fun getCountryByName(name: String): CountryResponseItem
+    suspend fun getCountryByName(name: String): List<CountryResponseItem>
     suspend fun getCountryByRegion(region: String): List<CountryResponseItem>
     suspend fun getCountryBySubRegion(subReg: String): List<CountryResponseItem>
     suspend fun getCountryByCapital(capital: List<String>): CountryResponseItem

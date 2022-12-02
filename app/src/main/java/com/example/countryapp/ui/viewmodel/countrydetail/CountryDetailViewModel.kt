@@ -24,8 +24,6 @@ class CountryDetailViewModel @Inject constructor(
     private var _state = mutableStateOf(CountryDetailState())
     val state: State<CountryDetailState> = _state
 
-
-
     init {
         savedStateHandle.get<String>("name")?.let { name->
             getCountry(name)

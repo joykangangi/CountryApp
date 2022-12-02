@@ -23,6 +23,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class) //all dependencies in the module live as long as the Application
 object AppModule {
+
     @Provides
     @Singleton
     fun providesCountryAPI(): CountryApi {
