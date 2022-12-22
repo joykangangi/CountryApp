@@ -1,7 +1,7 @@
 package com.example.countryapp.data.remote.dto.countrydto
 
 
-import com.example.countryapp.data.repository.model.Country
+import com.example.countryapp.domain.model.Country
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

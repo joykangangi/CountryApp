@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.countryapp.R
-import com.example.countryapp.data.repository.model.Country
+import com.example.countryapp.domain.model.Country
 import com.example.countryapp.ui.navigation.Screen
 import com.example.countryapp.ui.viewmodel.CountryListEvents
 import com.example.countryapp.ui.viewmodel.countrylist.components.CountryFilterSection

@@ -1,6 +1,6 @@
 package com.example.countryapp.ui.viewmodel.countrylist
 
-import com.example.countryapp.data.repository.model.Country
+import com.example.countryapp.domain.model.Country
 
 data class CountryListState(
     val countries: Map<Char, List<Country>>? = emptyMap(),

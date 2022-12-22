@@ -1,7 +1,7 @@
 package com.example.countryapp.data.repository.use_cases
 
 import com.example.countryapp.data.remote.dto.countrydto.toCountry
-import com.example.countryapp.data.repository.model.Country
+import com.example.countryapp.domain.model.Country
 import com.example.countryapp.domain.repository.CountryRepository
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Constants.IOERRORMESSAGE

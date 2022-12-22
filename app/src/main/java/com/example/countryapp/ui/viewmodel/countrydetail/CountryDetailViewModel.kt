@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.countryapp.data.repository.model.Country
+import com.example.countryapp.domain.model.Country
 import com.example.countryapp.data.repository.use_cases.GetCountryUseCase
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Resource

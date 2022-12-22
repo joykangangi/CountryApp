@@ -9,6 +9,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.countryapp.R
@@ -20,10 +21,10 @@ fun CountryFilterSection() {
         Box(
             modifier = Modifier
                 .padding(12.dp)
-                .border(
-                    1.dp,
-                    color = MaterialTheme.colors.onPrimary,
-                    shape = RoundedCornerShape(1)
+                .size(width = 73.dp, height = 40.dp)
+                .shadow(
+                    shape = RoundedCornerShape(4.dp),
+                    elevation = 1.dp
                 )
                 .clickable { }
         ) {
@@ -41,10 +42,10 @@ fun CountryFilterSection() {
         Box(
             modifier = Modifier
                 .padding(12.dp)
-                .border(
-                    1.dp,
-                    color = MaterialTheme.colors.onPrimary,
-                    shape = RoundedCornerShape(1)
+                .size(width = 73.dp, height = 40.dp)
+                .shadow(
+                    shape = RoundedCornerShape(4.dp),
+                    elevation = 1.dp
                 )
                 .clickable { }
         ) {
@@ -52,7 +53,7 @@ fun CountryFilterSection() {
                 Icon(
                     painter = painterResource(id = R.drawable.filter),
                     contentDescription = null,
-                    modifier = Modifier.size(40.dp)
+                    modifier = Modifier.size(30.dp)
                 )
                 Text(text = "Filter")
             }

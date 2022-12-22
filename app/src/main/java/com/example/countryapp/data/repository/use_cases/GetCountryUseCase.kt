@@ -1,7 +1,7 @@
 package com.example.countryapp.data.repository.use_cases
 
 import com.example.countryapp.data.remote.dto.countrydto.toCountry
-import com.example.countryapp.data.repository.model.Country
+import com.example.countryapp.domain.model.Country
 import com.example.countryapp.domain.repository.CountryRepository
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Constants.IOERRORMESSAGE
@@ -24,7 +24,7 @@ class GetCountryUseCase @Inject constructor(private val repository: CountryRepos
     operator fun invoke(name: String): Flow<Resource<Country>> = flow{
         try {
             emit(Resource.Loading())
-            repository.getCountries()
+           // repository.getCountryByName(name)
             val country = repository.getCountryByName(name = name).map { it.toCountry() }.get(0)
             emit(Resource.Success(country))
         }catch (e: HttpException) {
