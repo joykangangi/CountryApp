@@ -57,8 +57,10 @@ fun CountryDetailScreen(
                 })
                 DetailsText(title = "Area", details = countryDetail.area ?: "N/A")
                 DetailsText(title = "Car Side", details = countryDetail.carSide ?: "N/A")
-                getCurrencyProp(countryDetail.currencies).values.first()
-                    ?.let { DetailsText(title = "Currency", details = it) }
+
+                countryDetail.currencies?.let {
+                    getCurrencyProp(it).values.first()?.name
+                }?.let { DetailsText(title = "Currency", details = it) }
                 Spacer(modifier = Modifier.height(10.dp))
                 DetailsText(title = "Landlocked", details = countryDetail.landlocked)
                 DetailsText(title = "Time Zone", details = countryDetail.timezones.forEach {

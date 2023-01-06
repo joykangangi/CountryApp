@@ -2,6 +2,7 @@ package com.example.countryapp.data.remote.dto.countrydto
 
 
 import com.squareup.moshi.*
+import java.util.*
 import kotlin.reflect.full.memberProperties
 
 @JsonClass(generateAdapter = true)
@@ -358,22 +359,14 @@ data class CurrencyDetail(
 /**
  * filter non-null values and transform the result to List<Pair<String, Any?>, then transform it into a Map
  */
-fun getCurrencyProp(currencies: Currencies?): Map<String, CurrencyDetail?> {
+fun getCurrencyProp(currencies: Currencies): Map<String, CurrencyDetail?> {
 
     val nonNullCurrencies = currencies.let {
-                val nonNullProperties = Currencies::class.memberProperties
-                    .filter { prop -> it?.let { it1 -> prop.get(it1) } != null }
-                    .map { prop ->
-                        prop.name to it?.let { it1 -> prop.get(it1)?.let {
-                                currency: CurrencyDetail ->
-                                CurrencyDetail(currency.name, currency.symbol)
-                            }
-                        }
-                    }
-
-                nonNullProperties.toMap()
-
-            }
+        val nonNullProperties: List<Pair<String, CurrencyDetail>> = Currencies::class.memberProperties
+            .filter { prop -> prop.get(it) != null }
+            .map { propFiltered -> propFiltered.name to propFiltered.get(it) as CurrencyDetail }
+        nonNullProperties.toMap()
+    }
     return nonNullCurrencies
 }
 
