@@ -3,6 +3,7 @@ package com.example.countryapp.data.remote.dto.countrydto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlin.reflect.full.memberProperties
 
 @JsonClass(generateAdapter = true)
 data class Languages(
@@ -313,3 +314,15 @@ data class Languages(
     @Json(name = "zul")
     val zul: String?
 )
+fun toListLang(languages: Languages?): List<String> {
+    val languageList = mutableListOf<String>()
+    val properties = Languages::class.memberProperties
+    for (language in properties) {
+        //extracts the value of each property using the get function and casts it to a String
+        val lang = languages?.let { language.get(it) } as String?
+        if (lang != null) {
+            languageList.add(lang)
+        }
+    }
+    return languageList
+}

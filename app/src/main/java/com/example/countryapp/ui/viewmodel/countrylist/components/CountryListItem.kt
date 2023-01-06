@@ -24,23 +24,45 @@ fun CountryListItem(
         modifier = modifier
             .fillMaxWidth()
             .clickable { onCountryClicked(country) }
-            .padding(20.dp),
+            .padding(15.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(
             model = country.flagEmoji,
-               // .crossfade(true) ,
+            // .crossfade(true) ,
             //placeholder = painterResource(R.drawable.ic_placeholder),
             contentDescription = null,
             contentScale = ContentScale.Crop,
-            modifier = Modifier.size(40.dp) .clip(RoundedCornerShape(6.dp),)
-               // .padding(bottom = 16.dp).padding(start = 2.dp)
+            modifier = Modifier
+                .size(40.dp)
+                .clip(RoundedCornerShape(6.dp))
+            // .padding(bottom = 16.dp).padding(start = 2.dp)
         )
 
-        Column(modifier = Modifier.padding(start = 17.dp), verticalArrangement = Arrangement.SpaceBetween) {
-            Text(text = country.name, style = MaterialTheme.typography.subtitle2,color = MaterialTheme.colors.onPrimary)
+        Column(
+            modifier = Modifier.padding(start = 17.dp),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = country.name,
+                style = MaterialTheme.typography.subtitle1,
+                color = MaterialTheme.colors.onPrimary
+            )
             for (capital in country.capital) {
-                Text(text = "$capital,", style = MaterialTheme.typography.body2, color = MaterialTheme.colors.onSecondary)
+                if (country.capital.size > 1) {
+                    Text(
+                        text = "$capital,",
+                        style = MaterialTheme.typography.body2,
+                        color = MaterialTheme.colors.onSecondary
+                    )
+                } else {
+                    Text(
+                        text = capital,
+                        style = MaterialTheme.typography.body2,
+                        color = MaterialTheme.colors.onSecondary
+                    )
+                }
+
             }
         }
     }

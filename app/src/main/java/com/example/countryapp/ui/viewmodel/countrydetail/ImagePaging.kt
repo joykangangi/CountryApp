@@ -27,6 +27,12 @@ import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
+
+/**
+ * return@label(func/lambda)
+ * return@launch ->stop the execution of the coroutine and return control to the caller, the launch function.
+ */
+
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun CountryImagePaging(countryDetail: Country) {
@@ -64,7 +70,7 @@ fun CountryImagePaging(countryDetail: Country) {
         //<
         PagerSlideButton(
             modifier = Modifier
-                .align(Alignment.Center)
+                .align(Alignment.CenterStart)
                 .padding(start = 16.dp)
                 .clickable {
                     scope.launch {
@@ -81,7 +87,7 @@ fun CountryImagePaging(countryDetail: Country) {
         //>
         PagerSlideButton(
             modifier = Modifier
-                .align(Alignment.Center)
+                .align(Alignment.CenterEnd)
                 .padding(end = 16.dp)
                 .clickable {
                     scope.launch {
@@ -99,9 +105,9 @@ fun CountryImagePaging(countryDetail: Country) {
         HorizontalPagerIndicator(
             pagerState = pagerState,
             activeColor = Color.White,
-            inactiveColor = Color.DarkGray,
+            inactiveColor = Color.LightGray,
             modifier = Modifier
-                .align(Alignment.Center)
+                .align(Alignment.BottomCenter)
                 .padding(16.dp)
         )
     }
@@ -120,7 +126,6 @@ fun PagerSlideButton(modifier: Modifier = Modifier, icon: Int) {
             Icon(
                 painter = painterResource(id = icon),
                 contentDescription = "arrow icon",
-                tint = GreyIcon,
                 modifier = Modifier
                     .size(16.dp)
                     .align(Alignment.Center)

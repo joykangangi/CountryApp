@@ -11,3 +11,11 @@ data class Idd(
     @Json(name = "suffixes")
     val suffixes: List<String?>?
 )
+
+fun Idd.toListIdd(idd: Idd): String {
+    val iddNos = mutableListOf<String>()
+    if (root != null && suffixes !=null) {
+        iddNos.add(root + suffixes)
+    }
+    return iddNos.toString()
+}

@@ -3,12 +3,12 @@ package com.example.countryapp.ui.theme
 import androidx.compose.ui.graphics.Color
 
 
-val Black = Color(0xFF000000)
+
 val White = Color(0xFFFFFFFF)
 val DarkBlue = Color(0xFF103D6A)
 val OrangeButton = Color(0xFFF57C00)
 val GreyText = Color(0xFF667085)
-val GreyIcon = Color(0xFF676E7A)
+val GreyIcon = Color(0xFFB9BBBE)
 val LightGrey = Color(0xFF98A2B3)
 
 val White2 = Color(0xFFDAD7D7)

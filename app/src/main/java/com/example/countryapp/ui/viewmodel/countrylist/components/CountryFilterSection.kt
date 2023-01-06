@@ -12,15 +12,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.countryapp.R
 
 @Composable
-fun CountryFilterSection() {
+fun CountryFilterSection(modifier: Modifier) {
 
-    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+    Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
         Box(
-            modifier = Modifier
-                .padding(12.dp)
+            modifier = modifier
                 .size(width = 73.dp, height = 40.dp)
                 .shadow(
                     shape = RoundedCornerShape(4.dp),
@@ -28,19 +28,19 @@ fun CountryFilterSection() {
                 )
                 .clickable { }
         ) {
-            Row(Modifier.padding(3.dp)) {
+            Row(modifier.padding(3.dp)) {
                 Icon(
                     painter = painterResource(id = R.drawable.globe),
                     contentDescription = null,
-                    modifier = Modifier.size(30.dp)
+                    modifier = Modifier.size(35.dp)
                 )
 
-                Text(text = "EN")
+                Text(text = "EN", fontSize = 10.sp)
             }
         }
 
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .padding(12.dp)
                 .size(width = 73.dp, height = 40.dp)
                 .shadow(
@@ -53,7 +53,7 @@ fun CountryFilterSection() {
                 Icon(
                     painter = painterResource(id = R.drawable.filter),
                     contentDescription = null,
-                    modifier = Modifier.size(30.dp)
+                    modifier = Modifier.size(20.dp)
                 )
                 Text(text = "Filter")
             }

@@ -1,8 +1,8 @@
 package com.example.countryapp.data.remote.dto.countrydto
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.squareup.moshi.*
+import kotlin.reflect.full.memberProperties
 
 @JsonClass(generateAdapter = true)
 data class Currencies(
@@ -333,3 +333,59 @@ data class Currencies(
     @Json(name = "ZWL")
     val zWL: ZWL?
 )
+
+fun toListLang2(languages: Languages?): List<String> {
+    val languageList = mutableListOf<String>()
+    val properties = Languages::class.memberProperties
+    for (language in properties) {
+        //extracts the value of each property using the get function and casts it to a String
+        val lang = languages?.let { language.get(it) } as String?
+        if (lang != null) {
+            languageList.add(lang)
+        }
+    }
+    return languageList
+}
+
+
+@JsonClass(generateAdapter = true)
+data class CurrencyDetail(
+    @Json(name = "name")
+    val name: String?,
+    @Json(name = "symbol")
+    val symbol: String?
+)
+/**
+ * filter non-null values and transform the result to List<Pair<String, Any?>, then transform it into a Map
+ */
+fun getCurrencyProp(currencies: Currencies?): Map<String, CurrencyDetail?> {
+
+    val nonNullCurrencies = currencies.let {
+                val nonNullProperties = Currencies::class.memberProperties
+                    .filter { prop -> it?.let { it1 -> prop.get(it1) } != null }
+                    .map { prop ->
+                        prop.name to it?.let { it1 -> prop.get(it1)?.let {
+                                currency: CurrencyDetail ->
+                                CurrencyDetail(currency.name, currency.symbol)
+                            }
+                        }
+                    }
+
+                nonNullProperties.toMap()
+
+            }
+    return nonNullCurrencies
+}
+
+
+//the get func is kinda interesting , receiver:Nothing
+
+//    val currMap = mutableMapOf<String, String>()
+//    val properties = Currencies::class.memberProperties
+//
+//    for (curr in properties) {
+//        val currNonNull = curr.get(currencies) as Map<*, *>?
+//        if (currNonNull?.keys != null) {
+//            currMap[currNonNull.keys.toString()] = currNonNull.values.toString()
+//        }
+//    }

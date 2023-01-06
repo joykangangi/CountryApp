@@ -2,24 +2,18 @@ package com.example.countryapp.ui.viewmodel.countrylist.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Clear
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import com.example.countryapp.ui.viewmodel.CountryListEvents
-import com.example.countryapp.ui.viewmodel.countrylist.CountryListViewModel
-import androidx.compose.runtime.mutableStateOf as mutableStateOf
+import androidx.compose.ui.unit.dp
 
 
 @Composable
@@ -51,6 +45,7 @@ fun SearchViewBar(
         ),
         modifier = Modifier
             .fillMaxWidth()
+            .padding(12.dp)
             .background(color = MaterialTheme.colors.background, shape = RectangleShape)
     )
 }
