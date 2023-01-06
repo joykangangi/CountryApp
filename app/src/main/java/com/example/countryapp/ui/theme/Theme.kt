@@ -22,10 +22,10 @@ private val LightColorPalette = lightColors(
     primary = White,
     primaryVariant = Black2,
     secondary = White,
-    onPrimary = GreyText,
-    onSecondary = GreyText,
-    onSurface = GreyText,
-    onBackground = GreyText,
+    onPrimary = Black2,
+    onSecondary = Black2,
+    onSurface = Black2,
+    onBackground = Black2,
     surface = White,
     background = White
 

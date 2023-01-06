@@ -24,6 +24,7 @@ import com.example.countryapp.R
 import com.example.countryapp.domain.model.Country
 import com.example.countryapp.ui.navigation.Screen
 import com.example.countryapp.ui.theme.ElsieFont
+import com.example.countryapp.ui.theme.GreyText
 import com.example.countryapp.ui.viewmodel.CountryListEvents
 import com.example.countryapp.ui.viewmodel.countrylist.components.CountryFilterSection
 import com.example.countryapp.ui.viewmodel.countrylist.components.CountryListItem
@@ -55,10 +56,10 @@ fun CountryListScreen(
                             style = MaterialTheme.typography.body2,
                             modifier = Modifier
                                 .padding(
-                                    start = 4.dp,
+                                    start = 8.dp,
                                     bottom = 4.dp
                                 ),
-                            color = MaterialTheme.colors.onPrimary
+                            color = GreyText
                         )
                     }
 
