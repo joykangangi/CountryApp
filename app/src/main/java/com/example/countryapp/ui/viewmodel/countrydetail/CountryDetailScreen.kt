@@ -14,7 +14,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.countryapp.data.remote.dto.countrydto.getCurrencyProp
 import com.example.countryapp.data.remote.dto.countrydto.toListIdd
 import com.example.countryapp.data.remote.dto.countrydto.toListLang
 import com.example.countryapp.domain.model.Country
@@ -35,40 +34,34 @@ fun CountryDetailScreen(
                     .fillMaxSize()
                     .padding(12.dp)
                     .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 TopAppBarCountry(country = countryDetail, navController = navController)
 
                 CountryImagePaging(countryDetail = countryDetail)
 
-                Divider()
+                Spacer(modifier = Modifier.height(10.dp))
                 DetailsText(title = "Population", details = countryDetail.population)
                 DetailsText(title = "Region", details = countryDetail.region)
-                DetailsText(title = "Capital", details = countryDetail.capital.forEach {
-                    Row {
-                       Text(text = it)
-                    }
-                })
-                DetailsText(title = "IsLandLocked", details = countryDetail.landlocked)
+                DetailsText(title = "Capital", details = countryDetail.capital.first())
+                DetailsText(title = "IsLandLocked", details = countryDetail.landlocked?: "N/A")
                 Spacer(modifier = Modifier.height(10.dp))
-                DetailsText(title = "Official Language", details = toListLang(countryDetail.languages).forEach {
-                    Row {
-                        Text(text = it)
-                    }
-                })
+                DetailsText(
+                    title = "Official Language",
+                    details = toListLang(countryDetail.languages).toString().removeSurrounding('['.toString(),
+                        ']'.toString()
+                    )
+                )
                 DetailsText(title = "Area", details = countryDetail.area ?: "N/A")
                 DetailsText(title = "Car Side", details = countryDetail.carSide ?: "N/A")
-
-                countryDetail.currencies?.let {
-                    getCurrencyProp(it).values.first()?.name
-                }?.let { DetailsText(title = "Currency", details = it) }
+                DetailsText(title = "Currency Name", details = "${countryDetail.currencyName} ${countryDetail.currencySymbol}" )
                 Spacer(modifier = Modifier.height(10.dp))
-                DetailsText(title = "Landlocked", details = countryDetail.landlocked)
-                DetailsText(title = "Time Zone", details = countryDetail.timezones.forEach {
-                    Row{
-                        Text(text = it)
-                    }
-                })
-                DetailsText(title = "Dialing Code", details = countryDetail.idd.toListIdd(countryDetail.idd))
+                DetailsText(title = "Landlocked", details = countryDetail.landlocked ?: false)
+                DetailsText(title = "Time Zone", details = countryDetail.timezones.toString().removeSurrounding('['.toString(),']'.toString()))
+                DetailsText(
+                    title = "Dialing Code",
+                    details = toListIdd(countryDetail.idd).replace("[", "").replace("]","")
+                )
                 DetailsText(title = "Sub-Region", details = countryDetail.subregion)
 
             }
@@ -102,16 +95,15 @@ fun DetailsText(
     titleStyle: TextStyle = MaterialTheme.typography.subtitle1,
     detailStyle: TextStyle = MaterialTheme.typography.body1
 ) {
-    Row(horizontalArrangement = Arrangement.SpaceBetween) {
+    Row {
         Text(text = "$title: ", style = titleStyle)
         Text(text = details.toString(), style = detailStyle)
     }
 }
 
 
-
 @Composable
-fun TopAppBarCountry(country: Country,navController: NavController) {
+fun TopAppBarCountry(country: Country, navController: NavController) {
     TopAppBar(
         title = {
             Text(country.name, style = MaterialTheme.typography.h6)
@@ -120,7 +112,7 @@ fun TopAppBarCountry(country: Country,navController: NavController) {
             IconButton(onClick = {
                 navController.navigate(Screen.CountryListScreen.route)
             }) {
-                Icon(Icons.Default.ArrowBack,null)
+                Icon(Icons.Default.ArrowBack, null)
             }
         }
     )

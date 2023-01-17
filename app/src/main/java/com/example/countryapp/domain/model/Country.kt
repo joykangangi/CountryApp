@@ -17,15 +17,16 @@ data class Country(
     val area: Double?,
     val carSide: String?,
     val coatOfArms: String?,
-    val currencies: Currencies?,
+    val currencyName: String,
+    val currencySymbol: String,
     val flags: String,
     val idd: Idd,
-    val independent: Boolean,
-    val landlocked: Boolean,
+    val independent: Boolean?,
+    val landlocked: Boolean?,
     val languages: Languages?,
     val population: Int,
     val region: String,
     val subregion: String,
     val timezones: List<String>,
-    val unMember: Boolean
+    val unMember: Boolean?
 )

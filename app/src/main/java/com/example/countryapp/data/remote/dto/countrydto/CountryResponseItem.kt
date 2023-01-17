@@ -5,6 +5,46 @@ import com.example.countryapp.domain.model.Country
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+/**
+ *
+fun getCurrencyProp1(currencies: Currencies): Map<String, *> {
+val nonNullCurrencies = currencies.let {
+val nonNullProperties = Currencies::class.memberProperties
+.filter { prop-> prop.get(it) != null }
+.map { propFiltered-> propFiltered.name to propFiltered.get(it) }
+.map { (name, value)-> name to value }
+
+nonNullProperties.toMap()
+}
+return nonNullCurrencies
+
+}
+ *
+ *
+fun Idd.toListIdd(idd: Idd): String {
+val iddNos = mutableListOf<String>()
+if (root != null && suffixes !=null) {
+iddNos.add(root + suffixes)
+}
+return iddNos.toString()
+}
+ *
+ *
+ *
+fun toListLang(languages: Languages?): List<String> {
+val languageList = mutableListOf<String>()
+val properties = Languages::class.memberProperties
+for (language in properties) {
+//extracts the value of each property using the get function and casts it to a String
+val lang = languages?.let { language.get(it) } as String?
+if (lang != null) {
+languageList.add(lang)
+}
+}
+return languageList
+}
+ */
+
 @JsonClass(generateAdapter = true)
 data class CountryResponseItem(
     @Json(name = "altSpellings")
@@ -18,7 +58,7 @@ data class CountryResponseItem(
     @Json(name = "capitalInfo")
     val capitalInfo: CapitalInfo?,
     @Json(name = "car")
-    val car: Car?,
+    val car: Car? = null,
     @Json(name = "cca2")
     val cca2: String?,
     @Json(name = "cca3")
@@ -29,20 +69,18 @@ data class CountryResponseItem(
     val cioc: String?,
     @Json(name = "coatOfArms")
     val coatOfArms: CoatOfArms?,
-    @Json(name = "continents")
-    val continents: List<String>?,
     @Json(name = "currencies")
-    val currencies: Currencies?,
+    val currencies: Map<String, Currencies>? = null,
+    @Json(name = "continents")
+    val continents: List<String>? = null,
     @Json(name = "demonyms")
-    val demonyms: Demonyms?,
+    val demonyms: Demonyms? = null,
     @Json(name = "fifa")
     val fifa: String?,
     @Json(name = "flag")
-    val flag: String,
+    val flag: String? = null,
     @Json(name = "flags")
-    val flags: Flags,
-    @Json(name = "gini")
-    val gini: Gini?,
+    val flags: Flags? = null,
     @Json(name = "idd")
     val idd: Idd?,
     @Json(name = "independent")
@@ -52,7 +90,7 @@ data class CountryResponseItem(
     @Json(name = "languages")
     val languages: Languages?,
     @Json(name = "latlng")
-    val latlng: List<Double>?,
+    val latlng: List<Double>? = null,
     @Json(name = "maps")
     val maps: Maps?,
     @Json(name = "name")
@@ -74,29 +112,31 @@ data class CountryResponseItem(
     @Json(name = "tld")
     val tld: List<String>?,
     @Json(name = "translations")
-    val translations: Translations?,
+    val translations: Map<String, Translations>? = null,
     @Json(name = "unMember")
     val unMember: Boolean?
 )
 
 fun CountryResponseItem.toCountry(): Country {
+
     return Country(
-        flagEmoji = flags.png,
-        name = name.common ?: "",
-        capital = capital ?: listOf("N/A"),
+        flagEmoji = flags?.png?:"N/A",
+        name = name.common ?: "N/A",
+        capital = capital ?: emptyList(),
         area = area,
-        carSide = car?.side,
-        coatOfArms = coatOfArms?.png,
-        currencies = currencies,
-        flags = flags.png,
+        carSide = car?.side ?: "N/A",
+        coatOfArms = coatOfArms?.png ?: "",
+        currencyName = currencies?.values?.first()?.name ?: "N/A",
+        currencySymbol = currencies?.values?.first()?.symbol ?: "N/A",
+        flags = flags?.png ?:"",
         idd = idd ?: Idd(null, null),
-        independent = independent ?: true,
-        landlocked = landlocked ?: false,
+        independent = independent,
+        landlocked = landlocked,
         languages = languages,
         population = population ?: 0,
         region = region ?: "N/A",
         subregion = subregion ?: "N/A",
-        timezones = timezones ?: listOf("N/A"),
-        unMember = unMember ?: false
+        timezones = timezones ?: emptyList(),
+        unMember = unMember
     )
 }
