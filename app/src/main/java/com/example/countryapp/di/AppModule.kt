@@ -36,14 +36,9 @@ object AppModule {
             .addInterceptor(logging)
             .build()
 
-        //moshi object
-        val moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
-
         return Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(MoshiConverterFactory.create(moshi))
+                .addConverterFactory(MoshiConverterFactory.create())
                 .client(client)
                 .build()
                 .create(CountryApi::class.java)

@@ -54,7 +54,7 @@ fun CountryDetailScreen(
                 )
                 DetailsText(title = "Area", details = countryDetail.area ?: "N/A")
                 DetailsText(title = "Car Side", details = countryDetail.carSide ?: "N/A")
-                DetailsText(title = "Currency Name", details = "${countryDetail.currencyName} ${countryDetail.currencySymbol}" )
+                DetailsText(title = "Currency Name", details = "${countryDetail.currencyName}, ${countryDetail.currencySymbol}" )
                 Spacer(modifier = Modifier.height(10.dp))
                 DetailsText(title = "Landlocked", details = countryDetail.landlocked ?: false)
                 DetailsText(title = "Time Zone", details = countryDetail.timezones.toString().removeSurrounding('['.toString(),']'.toString()))
