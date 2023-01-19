@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 
@@ -30,12 +31,17 @@ fun SearchViewBar(
         leadingIcon = {
             Icon(
                 imageVector = Icons.Rounded.Search,
-                tint = MaterialTheme.colors.onBackground,
+                tint = Color.Gray,
                 contentDescription = "search Icon",
             )
         },
         maxLines = 1,
-        colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.Transparent),
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = MaterialTheme.colors.surface,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
+        ),
         placeholder = { Text(text = "Search Country") },
         textStyle = MaterialTheme.typography.subtitle2,
         singleLine = true,
@@ -48,4 +54,10 @@ fun SearchViewBar(
             .padding(12.dp)
             .background(color = MaterialTheme.colors.background, shape = RectangleShape)
     )
+}
+
+@Preview
+@Composable
+fun SearchPreview() {
+    SearchViewBar(searchQuery = "", onSearchQueryChange = {})
 }

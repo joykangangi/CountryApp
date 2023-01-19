@@ -43,8 +43,8 @@ fun CountryDetailScreen(
                 Spacer(modifier = Modifier.height(10.dp))
                 DetailsText(title = "Population", details = countryDetail.population)
                 DetailsText(title = "Region", details = countryDetail.region)
+                DetailsText(title = "Sub-Region", details = countryDetail.subregion)
                 DetailsText(title = "Capital", details = countryDetail.capital.first())
-                DetailsText(title = "IsLandLocked", details = countryDetail.landlocked?: "N/A")
                 Spacer(modifier = Modifier.height(10.dp))
                 DetailsText(
                     title = "Official Language",
@@ -62,8 +62,6 @@ fun CountryDetailScreen(
                     title = "Dialing Code",
                     details = toListIdd(countryDetail.idd).replace("[", "").replace("]","")
                 )
-                DetailsText(title = "Sub-Region", details = countryDetail.subregion)
-
             }
         }
 

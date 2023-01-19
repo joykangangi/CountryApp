@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -25,6 +26,7 @@ import com.example.countryapp.domain.model.Country
 import com.example.countryapp.ui.navigation.Screen
 import com.example.countryapp.ui.theme.ElsieFont
 import com.example.countryapp.ui.theme.GreyText
+import com.example.countryapp.ui.theme.OrangeButton
 import com.example.countryapp.ui.viewmodel.CountryListEvents
 import com.example.countryapp.ui.viewmodel.countrylist.components.CountryFilterSection
 import com.example.countryapp.ui.viewmodel.countrylist.components.CountryListItem
@@ -96,20 +98,33 @@ fun CountryListScreen(
 fun TopAppBarExplore() {
     TopAppBar(
         title = {
-            Text(buildAnnotatedString {
-                withStyle(
-                    style = SpanStyle(fontFamily = ElsieFont)
-                ) {
-                    append(stringResource(id = R.string.explore))
-                }
+            Text(
+                buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(fontFamily = ElsieFont, fontSize = 20.sp)
+                    ) {
+                        append(stringResource(id = R.string.explore))
+                    }
 
-                withStyle(
-                    style = SpanStyle(fontSize = 3.sp, baselineShift = BaselineShift.Subscript)
-                ) {
-                    append("🟠")
+                    withStyle(
+                        style = SpanStyle(fontSize = 20.sp, color = OrangeButton)
+                    ) {
+                        append(".")
+                    }
                 }
-            }
             )
+        },
+
+        //manage dark theme as state, default is light theme
+        actions = {
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    painter = (if (true) painterResource(id = R.drawable.ic_dark_theme) else painterResource(
+                        id = R.drawable.ic_light_theme
+                    )),
+                    contentDescription = "Light / Dark Mode Switch",
+                tint = MaterialTheme.colors.onPrimary)
+            }
         }
     )
 }
