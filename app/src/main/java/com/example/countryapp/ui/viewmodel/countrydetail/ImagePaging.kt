@@ -35,7 +35,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun CountryImagePaging(countryDetail: Country) {
+fun CountryImagePaging(countryDetail: Country, modifier: Modifier) {
 
     val pagerState = rememberPagerState()
     val countryPages = listOf(
@@ -45,14 +45,14 @@ fun CountryImagePaging(countryDetail: Country) {
 
     val scope = rememberCoroutineScope()
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(width = 400.dp, height = 190.dp)
             .clip(RoundedCornerShape(8.dp))
     ) {
         HorizontalPager(
             count = countryPages.size,
             state = pagerState,
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .background(Color.LightGray)
         ) { page ->
@@ -69,7 +69,7 @@ fun CountryImagePaging(countryDetail: Country) {
 
         //<
         PagerSlideButton(
-            modifier = Modifier
+            modifier = modifier
                 .align(Alignment.CenterStart)
                 .padding(start = 16.dp)
                 .clickable {
@@ -86,7 +86,7 @@ fun CountryImagePaging(countryDetail: Country) {
 
         //>
         PagerSlideButton(
-            modifier = Modifier
+            modifier = modifier
                 .align(Alignment.CenterEnd)
                 .padding(end = 16.dp)
                 .clickable {

@@ -1,6 +1,7 @@
 package com.example.countryapp.ui.viewmodel.countrylist.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
@@ -31,17 +32,9 @@ fun SearchViewBar(
         leadingIcon = {
             Icon(
                 imageVector = Icons.Rounded.Search,
-                tint = Color.Gray,
                 contentDescription = "search Icon",
             )
         },
-        maxLines = 1,
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = MaterialTheme.colors.surface,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent
-        ),
         placeholder = { Text(text = "Search Country") },
         textStyle = MaterialTheme.typography.subtitle2,
         singleLine = true,
@@ -53,6 +46,7 @@ fun SearchViewBar(
             .fillMaxWidth()
             .padding(12.dp)
             .background(color = MaterialTheme.colors.background, shape = RectangleShape)
+            .border(width = 1.dp, color = MaterialTheme.colors.onPrimary)
     )
 }
 

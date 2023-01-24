@@ -1,5 +1,6 @@
 package com.example.countryapp.ui.viewmodel.countrylist
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -31,7 +32,7 @@ class CountryListViewModel @Inject constructor
     val state: State<CountryListState> = _state
 
     private var _detailState = mutableStateOf(CountryDetailState())
-    val detailState: State<CountryDetailState> = _detailState
+
     private val filteredList = mutableListOf<Country>()
 
 
@@ -96,4 +97,10 @@ class CountryListViewModel @Inject constructor
         _detailState.value = CountryDetailState(country = country)
     }
 
+
+    fun updateTheme(darkMode: Boolean=_state.value.darkTheme) = viewModelScope.launch {
+        val currentTheme = !darkMode
+        _state.value = _state.value.copy(darkTheme = currentTheme)
+        Log.i("CountryListViewModel", "isDarkTheme = ${_state.value.darkTheme}")
+    }
 }

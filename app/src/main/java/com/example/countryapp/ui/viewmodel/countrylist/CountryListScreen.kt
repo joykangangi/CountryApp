@@ -1,20 +1,16 @@
 package com.example.countryapp.ui.viewmodel.countrylist
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
@@ -41,7 +37,8 @@ fun CountryListScreen(
     val state = viewModel.state.value
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        TopAppBarExplore()
+
+        TopAppBarExplore(viewModel)
 
         SearchViewBar(searchQuery = state.searchQuery) { query ->
             viewModel.getEvent(CountryListEvents.OnSearchQueryChange(query))
@@ -95,19 +92,21 @@ fun CountryListScreen(
 }
 
 @Composable
-fun TopAppBarExplore() {
+fun TopAppBarExplore(viewModel: CountryListViewModel) {
+    val isDarkTheme = viewModel.state.value.darkTheme
+
     TopAppBar(
         title = {
             Text(
                 buildAnnotatedString {
                     withStyle(
-                        style = SpanStyle(fontFamily = ElsieFont, fontSize = 20.sp)
+                        style = SpanStyle(fontFamily = ElsieFont, fontSize = 26.sp)
                     ) {
                         append(stringResource(id = R.string.explore))
                     }
 
                     withStyle(
-                        style = SpanStyle(fontSize = 20.sp, color = OrangeButton)
+                        style = SpanStyle(fontSize = 26.sp, color = OrangeButton)
                     ) {
                         append(".")
                     }
@@ -117,13 +116,18 @@ fun TopAppBarExplore() {
 
         //manage dark theme as state, default is light theme
         actions = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(
+                onClick = {
+                   viewModel.updateTheme()
+                }
+            ) {
                 Icon(
-                    painter = (if (true) painterResource(id = R.drawable.ic_dark_theme) else painterResource(
+                    painter = (if (isDarkTheme) painterResource(id = R.drawable.ic_dark_theme) else painterResource(
                         id = R.drawable.ic_light_theme
                     )),
                     contentDescription = "Light / Dark Mode Switch",
-                tint = MaterialTheme.colors.onPrimary)
+                    tint = MaterialTheme.colors.onPrimary
+                )
             }
         }
     )

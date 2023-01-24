@@ -6,5 +6,6 @@ data class CountryListState(
     val countries: Map<Char, List<Country>>? = emptyMap(),
     val error: String = "",
     val isLoading: Boolean = false,
-    val searchQuery: String = ""
+    val searchQuery: String = "",
+    val darkTheme: Boolean = false
 )
