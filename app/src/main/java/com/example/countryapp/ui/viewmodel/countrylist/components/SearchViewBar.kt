@@ -7,10 +7,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -20,7 +19,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun SearchViewBar(
-    searchQuery: String ,
+    modifier: Modifier = Modifier,
+    searchQuery: String,
     onSearchQueryChange: (String) -> Unit
 ) {
 
@@ -31,10 +31,13 @@ fun SearchViewBar(
         },
         leadingIcon = {
             Icon(
-                imageVector = Icons.Rounded.Search,
-                contentDescription = "search Icon",
+                imageVector = Icons.Default.Search,
+                contentDescription = "Search Icon",
             )
         },
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = MaterialTheme.colors.surface
+        ),
         placeholder = { Text(text = "Search Country") },
         textStyle = MaterialTheme.typography.subtitle2,
         singleLine = true,
@@ -42,11 +45,12 @@ fun SearchViewBar(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Done
         ),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(12.dp)
             .background(color = MaterialTheme.colors.background, shape = RectangleShape)
             .border(width = 1.dp, color = MaterialTheme.colors.onPrimary)
+
     )
 }
 

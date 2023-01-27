@@ -1,5 +1,6 @@
 package com.example.countryapp.ui.viewmodel.countrylist
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -36,7 +37,10 @@ fun CountryListScreen(
 
     val state = viewModel.state.value
 
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(start = 12.dp, top = 8.dp, end = 12.dp)) {
 
         TopAppBarExplore(viewModel)
 
@@ -47,6 +51,7 @@ fun CountryListScreen(
         CountryFilterSection(modifier = Modifier.padding(10.dp))
 
         Box(modifier = Modifier.fillMaxSize()) {
+
             LazyColumn {
                 state.countries?.forEach { (initial, countries) ->
                     item {
@@ -70,6 +75,9 @@ fun CountryListScreen(
                     }
                 }
             }
+            if (state.isLoading) {
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            }
 
             //if there is an error message
             if (state.error.isNotBlank()) {
@@ -84,9 +92,6 @@ fun CountryListScreen(
                 )
             }
 
-            if (state.isLoading) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            }
         }
     }
 }
