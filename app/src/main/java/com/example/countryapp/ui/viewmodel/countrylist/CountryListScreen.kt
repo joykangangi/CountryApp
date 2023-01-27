@@ -76,7 +76,7 @@ fun CountryListScreen(
                 }
             }
             if (state.isLoading) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center), color = MaterialTheme.colors.onSecondary)
             }
 
             //if there is an error message
