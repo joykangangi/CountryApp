@@ -1,10 +1,11 @@
 # CountryApp
-An android application built with Jetpack Compose, consuming the Countries API to display countries and details about them . This is my Stage 3 project at HNGi9
+An android application built with Jetpack Compose, consuming the Countries API to display countries and details about them . Credits to HNGi9.
 
 ### Features
 - Smooth display of Countries from the `API`
 - View Country's Details on click.
 - Network Error Handling
+- Search Country By Name
 
 ### ToDo/WishList Features
  - Filter countries by:
@@ -55,6 +56,14 @@ Each class has only one public function,i.e to execute the use case function
  - [Coil](https://coil-kt.github.io/coil/compose/) - This helps in image loading from the network.
  - [Hilt](https://dagger.dev/hilt/) - It is a library for Android that reduces the boilerplate of using manual DI in your project. It decouples code and makes it easier to test in future.
  
+ ### What's New in v1.0.0
+ #### Better Network/Data Transfer Object(DTO)
+ - The previous version had generated too many and unnecessary model classes. That made the runtime longer and complex to work with in the UI layer. For example, the `Currency` details could only be displayed as an object in the screen, i.e. `Currency: Dollar(name= Dollar, symbol = $)`.
+ - Through further consultation, the API was discovered to be inconsistent. It will give different results for different request. Normally, a consistent API would return the same result for different requests, e.g different `names` should return a `String`. Due to the inconsistency, the [JsonToKotlin Plugin](https://plugins.jetbrains.com/plugin/9960-json-to-kotlin-class-jsontokotlinclass-) would generate numerous(400+) data classes.
+ - Personally, I tried tweaking with the generated model to give better UI but it led to `ClassCastException`.That is changing Dollar to a data class with name and symbol as parameters.
+ - To overcome this, data from the endpoint had to be fetched manually by inferring the inconsistent responses. E.g. ```val currencies: Currencies?``` changed to ```val currencies: Map<String, Currencies?>```. The type inferred should be similar to the JSON response otherwise it would cause avoidable pain e.g. `List<Currencies?>` would cause an error.
+ - In future, one can watch out for such anomalies in the endpoints by using [Postman](https://www.postman.com/) to test the API. Alternatively, go through the API documentation to see for yourself.
+ ##### The application is still a work in progress and will add the respective features as time goes by. Run the following links, preferrably the latest, and feel free to clone and adjust the applications to your liking.
  ### Links
- - [Appetize Link](https://appetize.io/app/6sb76yokly4ppcegmsxhoexjvm)
- - [Google Link with APK](https://drive.google.com/file/d/1jaW8i4_WnI0lNvsjEyRVkuilc26TMGM-/view?usp=sharing)
+ - [Appetize Link V.0.0.0](https://appetize.io/app/6sb76yokly4ppcegmsxhoexjvm)
+ - [Appetize Link v.1.0.0](https://appetize.io/app/m44ha2dvhb3fu5tlud3jrx45am?device=pixel4&osVersion=11.0&scale=75)
