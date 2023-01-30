@@ -5,8 +5,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.countryapp.domain.model.Country
 import com.example.countryapp.data.repository.use_cases.GetCountriesUseCase
+import com.example.countryapp.domain.model.Country
 import com.example.countryapp.ui.viewmodel.CountryListEvents
 import com.example.countryapp.ui.viewmodel.countrydetail.CountryDetailState
 import com.example.countryapp.util.Constants.DELAY

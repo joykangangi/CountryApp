@@ -1,6 +1,7 @@
 package com.example.countryapp.ui.viewmodel.countrylist
 
 import android.util.Log
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -28,11 +29,14 @@ import com.example.countryapp.ui.viewmodel.CountryListEvents
 import com.example.countryapp.ui.viewmodel.countrylist.components.CountryFilterSection
 import com.example.countryapp.ui.viewmodel.countrylist.components.CountryListItem
 import com.example.countryapp.ui.viewmodel.countrylist.components.SearchViewBar
+import com.example.countryapp.util.Resource
 
 @Composable
 fun CountryListScreen(
     navController: NavController,
-    viewModel: CountryListViewModel = hiltViewModel()
+    viewModel: CountryListViewModel = hiltViewModel(),
+    isDarkTheme: Boolean,
+    toggleTheme: () -> Unit
 ) {
 
     val state = viewModel.state.value
@@ -40,9 +44,10 @@ fun CountryListScreen(
     Column(
         Modifier
             .fillMaxSize()
-            .padding(start = 12.dp, top = 8.dp, end = 12.dp)) {
+            .padding(start = 12.dp, top = 8.dp, end = 12.dp)
+    ) {
 
-        TopAppBarExplore(viewModel)
+        TopAppBarExplore(isDarkTheme, toggleTheme)
 
         SearchViewBar(searchQuery = state.searchQuery) { query ->
             viewModel.getEvent(CountryListEvents.OnSearchQueryChange(query))
@@ -76,10 +81,13 @@ fun CountryListScreen(
                 }
             }
             if (state.isLoading) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center), color = MaterialTheme.colors.onSecondary)
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center),
+                    color = MaterialTheme.colors.onSecondary
+                )
             }
 
-            //if there is an error message
+            //if there is an error, message
             if (state.error.isNotBlank()) {
                 Text(
                     text = state.error,
@@ -91,14 +99,12 @@ fun CountryListScreen(
                         .align(Alignment.Center)
                 )
             }
-
         }
     }
 }
 
 @Composable
-fun TopAppBarExplore(viewModel: CountryListViewModel) {
-    val isDarkTheme = viewModel.state.value.darkTheme
+fun TopAppBarExplore(isDarkTheme: Boolean, toggleTheme:()->Unit) {
 
     TopAppBar(
         title = {
@@ -122,9 +128,8 @@ fun TopAppBarExplore(viewModel: CountryListViewModel) {
         //manage dark theme as state, default is light theme
         actions = {
             IconButton(
-                onClick = {
-                   viewModel.updateTheme()
-                }
+                onClick = toggleTheme
+
             ) {
                 Icon(
                     painter = (if (isDarkTheme) painterResource(id = R.drawable.ic_dark_theme) else painterResource(

@@ -13,6 +13,7 @@ private val DarkColorPalette = darkColors(
     secondary = DarkBlue,
     onSecondary = White,
     primaryVariant = DarkBlue2,
+    background = DarkBlue3,
     error = Color.Red
 )
 
@@ -36,7 +37,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun CountryAppTheme(darkTheme: Boolean, content: @Composable () -> Unit) {
+fun CountryAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
