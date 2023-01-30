@@ -26,72 +26,81 @@ fun CountryDetailScreen(
     viewModel: CountryDetailViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.SpaceEvenly
+
+    Scaffold(
+        topBar = { state.country?.let { TopAppBarCountry(country = it, navController = navController) } }
     ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.SpaceEvenly
+        ) {
 
-        state.country?.let { countryDetail: Country ->
-            TopAppBarCountry(country = countryDetail, navController = navController)
+            state.country?.let { countryDetail: Country ->
+                //TopAppBarCountry(country = countryDetail, navController = navController)
 
-            CountryImagePaging(countryDetail = countryDetail, modifier = modifier.padding(3.dp))
+                CountryImagePaging(countryDetail = countryDetail, modifier = modifier.padding(it))
 
-            Box(modifier = modifier.fillMaxWidth()) {
-                Column(
-                    modifier = modifier.padding(5.dp)
-                ) {
+                Box(modifier = modifier.fillMaxWidth()) {
+                    Column(
+                        modifier = modifier.padding(5.dp)
+                    ) {
 
-                    Spacer(modifier = Modifier.height(10.dp))
-                    DetailsText(title = "Population", details = countryDetail.population)
-                    DetailsText(title = "Region", details = countryDetail.region)
-                    DetailsText(title = "Sub-Region", details = countryDetail.subregion)
-                    DetailsText(title = "Capital", details = countryDetail.capital.first())
-                    Spacer(modifier = Modifier.height(10.dp))
-                    DetailsText(
-                        title = "Official Language",
-                        details = toListLang(countryDetail.languages).toString().removeSurrounding(
-                            '['.toString(),
-                            ']'.toString()
+                        Spacer(modifier = Modifier.height(10.dp))
+                        DetailsText(title = "Population", details = countryDetail.population)
+                        DetailsText(title = "Region", details = countryDetail.region)
+                        DetailsText(title = "Sub-Region", details = countryDetail.subregion)
+                        DetailsText(title = "Capital", details = countryDetail.capital.first())
+                        Spacer(modifier = Modifier.height(10.dp))
+                        DetailsText(
+                            title = "Official Language",
+                            details = toListLang(countryDetail.languages).toString()
+                                .removeSurrounding(
+                                    '['.toString(),
+                                    ']'.toString()
+                                )
                         )
-                    )
-                    DetailsText(title = "Area", details = countryDetail.area ?: "N/A")
-                    DetailsText(title = "Car Side", details = countryDetail.carSide ?: "N/A")
-                    DetailsText(
-                        title = "Currency Name",
-                        details = "${countryDetail.currencyName}, ${countryDetail.currencySymbol}"
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-                    DetailsText(title = "Landlocked", details = countryDetail.landlocked ?: false)
-                    DetailsText(
-                        title = "Time Zone",
-                        details = countryDetail.timezones.toString()
-                            .removeSurrounding('['.toString(), ']'.toString())
-                    )
-                    DetailsText(
-                        title = "Dialing Code",
-                        details = toListIdd(countryDetail.idd).replace("[", "").replace("]", "")
+                        DetailsText(title = "Area", details = countryDetail.area ?: "N/A")
+                        DetailsText(title = "Car Side", details = countryDetail.carSide ?: "N/A")
+                        DetailsText(
+                            title = "Currency Name",
+                            details = "${countryDetail.currencyName}, ${countryDetail.currencySymbol}"
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+                        DetailsText(
+                            title = "Landlocked",
+                            details = countryDetail.landlocked ?: false
+                        )
+                        DetailsText(
+                            title = "Time Zone",
+                            details = countryDetail.timezones.toString()
+                                .removeSurrounding('['.toString(), ']'.toString())
+                        )
+                        DetailsText(
+                            title = "Dialing Code",
+                            details = toListIdd(countryDetail.idd).replace("[", "").replace("]", "")
+                        )
+                    }
+                }
+
+
+                //if there is an error message
+                if (state.error.isNotBlank()) {
+                    Text(
+                        text = state.error,
+                        color = MaterialTheme.colors.error,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 20.dp)
+                            .align(Alignment.CenterHorizontally)
                     )
                 }
-            }
 
-
-            //if there is an error message
-            if (state.error.isNotBlank()) {
-                Text(
-                    text = state.error,
-                    color = MaterialTheme.colors.error,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp)
-                        .align(Alignment.CenterHorizontally)
-                )
-            }
-
-            if (state.isLoading) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+                if (state.isLoading) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+                }
             }
         }
     }

@@ -36,7 +36,8 @@ fun SearchViewBar(
             )
         },
         colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = MaterialTheme.colors.surface
+            backgroundColor = MaterialTheme.colors.surface,
+            cursorColor = MaterialTheme.colors.onSecondary
         ),
         placeholder = { Text(text = "Search Country") },
         textStyle = MaterialTheme.typography.subtitle2,

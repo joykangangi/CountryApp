@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -22,29 +24,33 @@ import com.example.countryapp.ui.viewmodel.countrydetail.CountryDetailScreen
 import com.example.countryapp.ui.viewmodel.countrylist.CountryListScreen
 import com.example.countryapp.ui.viewmodel.countrylist.CountryListViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var application: CountryApplication
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val viewModel = hiltViewModel<CountryListViewModel>()
-            val isDarkTheme = viewModel.state.value.darkTheme
-            CountryAppTheme(darkTheme = isDarkTheme) {
-                Log.i("Main Activity1", "isDarkTheme = $isDarkTheme")
+
+            CountryAppTheme(darkTheme = application.isDark.value) {
+                Log.i("Main Activity1", "isDarkTheme = ${application.isDark.value}")
                 Surface(color = MaterialTheme.colors.background) {
-                    CountryApp()
+                    CountryApp(
+                        isDark = application.isDark.value,
+                        toggleTheme = { application.toggleLightTheme() }
+                    )
                 }
             }
-
         }
     }
 }
 
-
 @Composable
-fun CountryApp() {
+fun CountryApp(isDark: Boolean, toggleTheme: () -> Unit) {
 
     val navController = rememberNavController()
 
@@ -53,7 +59,7 @@ fun CountryApp() {
         startDestination = Screen.CountryListScreen.route
     ) {
         composable(Screen.CountryListScreen.route) {
-            CountryListScreen(navController)
+            CountryListScreen(navController, toggleTheme = toggleTheme, isDarkTheme = isDark)
         }
 
         composable(Screen.CountryDetailScreen.route + "/{name}") {

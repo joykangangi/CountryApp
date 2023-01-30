@@ -1,5 +1,7 @@
 package com.example.countryapp.di
 
+import android.content.Context
+import com.example.countryapp.CountryApplication
 import com.example.countryapp.data.remote.CountryApi
 import com.example.countryapp.data.repository.CountryRepositoryImp
 import com.example.countryapp.domain.repository.CountryRepository
@@ -9,6 +11,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,6 +29,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class) //all dependencies in the module live as long as the Application
 object AppModule {
 
+    @Singleton
+    @Provides
+    fun provideApplication(@ApplicationContext app: Context):
+            CountryApplication {
+        return app as CountryApplication
+    }
+
+
     @Provides
     @Singleton
     fun providesCountryAPI(): CountryApi {
@@ -37,14 +48,12 @@ object AppModule {
             .build()
 
         return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .client(client)
-                .build()
-                .create(CountryApi::class.java)
-        }
-
-
+            .baseUrl(BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .client(client)
+            .build()
+            .create(CountryApi::class.java)
+    }
 
 
     //after creating the API above dagger will pass it as a parameter below
