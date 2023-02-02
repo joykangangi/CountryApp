@@ -102,6 +102,9 @@ dependencies {
     //Accompanist View Pager
     implementation "com.google.accompanist:accompanist-pager:0.23.1"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.23.1"
+
+    //Accompanist System Ui Controller
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.29.1-alpha"
 }
 
 // Allow references to generated code

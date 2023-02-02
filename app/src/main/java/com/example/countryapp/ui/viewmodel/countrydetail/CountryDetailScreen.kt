@@ -14,10 +14,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.countryapp.data.remote.dto.countrydto.toListIdd
 import com.example.countryapp.data.remote.dto.countrydto.toListLang
+import com.example.countryapp.data.remote.dto.countrydto.toStringIdd
 import com.example.countryapp.domain.model.Country
 import com.example.countryapp.ui.navigation.Screen
+import com.example.countryapp.ui.util.cleanList
+import com.example.countryapp.ui.util.firstCapital
+import com.example.countryapp.ui.util.formatCommaSeparator
 
 @Composable
 fun CountryDetailScreen(
@@ -27,63 +30,51 @@ fun CountryDetailScreen(
 ) {
     val state = viewModel.state.value
 
-    Scaffold(
-        topBar = { state.country?.let { TopAppBarCountry(country = it, navController = navController) } }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.SpaceEvenly
-        ) {
+        state.country?.let { countryDetail: Country ->
+            TopAppBarCountry(country = countryDetail, navController = navController)
 
-            state.country?.let { countryDetail: Country ->
-                //TopAppBarCountry(country = countryDetail, navController = navController)
+            CountryImagePaging(countryDetail = countryDetail, modifier = modifier.padding(3.dp))
 
-                CountryImagePaging(countryDetail = countryDetail, modifier = modifier.padding(it))
+            Box(modifier = modifier.fillMaxSize()) {
+                Column(
+                    modifier = modifier.padding(5.dp),
+                    verticalArrangement = Arrangement.SpaceEvenly
+                ) {
 
-                Box(modifier = modifier.fillMaxWidth()) {
-                    Column(
-                        modifier = modifier.padding(5.dp)
-                    ) {
+                    Spacer(modifier = Modifier.height(10.dp))
 
-                        Spacer(modifier = Modifier.height(10.dp))
-                        DetailsText(title = "Population", details = countryDetail.population)
-                        DetailsText(title = "Region", details = countryDetail.region)
-                        DetailsText(title = "Sub-Region", details = countryDetail.subregion)
-                        DetailsText(title = "Capital", details = countryDetail.capital.first())
-                        Spacer(modifier = Modifier.height(10.dp))
-                        DetailsText(
-                            title = "Official Language",
-                            details = toListLang(countryDetail.languages).toString()
-                                .removeSurrounding(
-                                    '['.toString(),
-                                    ']'.toString()
-                                )
-                        )
-                        DetailsText(title = "Area", details = countryDetail.area ?: "N/A")
-                        DetailsText(title = "Car Side", details = countryDetail.carSide ?: "N/A")
-                        DetailsText(
-                            title = "Currency Name",
-                            details = "${countryDetail.currencyName}, ${countryDetail.currencySymbol}"
-                        )
-                        Spacer(modifier = Modifier.height(10.dp))
-                        DetailsText(
-                            title = "Landlocked",
-                            details = countryDetail.landlocked ?: false
-                        )
-                        DetailsText(
-                            title = "Time Zone",
-                            details = countryDetail.timezones.toString()
-                                .removeSurrounding('['.toString(), ']'.toString())
-                        )
-                        DetailsText(
-                            title = "Dialing Code",
-                            details = toListIdd(countryDetail.idd).replace("[", "").replace("]", "")
-                        )
-                    }
+                    DetailsText(title = "Population", details = countryDetail.population.formatCommaSeparator())
+                    DetailsText(title = "Region", details = countryDetail.region)
+                    DetailsText(title = "Sub-Region", details = countryDetail.subregion)
+                    DetailsText(title = "Capital", details = countryDetail.capital.first())
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    DetailsText(title = "Official Language(s)", details = cleanList(toListLang(countryDetail.languages)))
+                    DetailsText(title = "Area", details = countryDetail.area ?: "N/A")
+                    DetailsText(title = "Currency Name", details = countryDetail.currencyName)
+                    DetailsText(title = "Currency Symbol", details = countryDetail.currencySymbol )
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    DetailsText(title = "Landlocked", details = countryDetail.landlocked ?: false.toString().firstCapital())
+                    DetailsText(title = "Time Zone", details = cleanList(countryDetail.timezones) )
+                    DetailsText(title = "Dialing Code", details = toStringIdd(countryDetail.idd) )
+                    DetailsText(title = "Car Side", details = countryDetail.carSide ?: "N/A".firstCapital())
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    DetailsText(title = "Un Member", details = if (countryDetail.unMember == true) "Yes" else "No")
+                    DetailsText(title = "Neighboring Countries", details = cleanList(countryDetail.borders) )
+                    DetailsText(title = "Demonyms", details = countryDetail.demonyms)
+                    DetailsText(title = "Start of Week", details = countryDetail.startOfWeek.firstCapital() )
+
                 }
-
 
                 //if there is an error message
                 if (state.error.isNotBlank()) {
@@ -94,49 +85,50 @@ fun CountryDetailScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 20.dp)
-                            .align(Alignment.CenterHorizontally)
+                            .align(Alignment.Center)
                     )
                 }
 
                 if (state.isLoading) {
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.Center),
+                        color = MaterialTheme.colors.onSecondary
+                    )
                 }
             }
         }
     }
 }
 
-
-
-    @Composable
-    fun DetailsText(
-        title: String,
-        details: Any,
-        titleStyle: TextStyle = MaterialTheme.typography.subtitle1,
-        detailStyle: TextStyle = MaterialTheme.typography.body1
-    ) {
-        Row {
-            Text(text = "$title: ", style = titleStyle)
-            Text(text = details.toString(), style = detailStyle)
-        }
+@Composable
+fun DetailsText(
+    title: String,
+    details: Any,
+    titleStyle: TextStyle = MaterialTheme.typography.subtitle1,
+    detailStyle: TextStyle = MaterialTheme.typography.body1
+) {
+    Row {
+        Text(text = "$title: ", style = titleStyle)
+        Text(text = details.toString(), style = detailStyle)
     }
+}
 
 
-    @Composable
-    fun TopAppBarCountry(country: Country, navController: NavController) {
-        TopAppBar(
-            title = {
-                Text(country.name, style = MaterialTheme.typography.h6)
-            },
-            navigationIcon = {
-                IconButton(onClick = {
-                    navController.navigate(Screen.CountryListScreen.route)
-                }) {
-                    Icon(Icons.Default.ArrowBack, null)
-                }
+@Composable
+fun TopAppBarCountry(country: Country, navController: NavController) {
+    TopAppBar(
+        title = {
+            Text(country.name, style = MaterialTheme.typography.h6)
+        },
+        navigationIcon = {
+            IconButton(onClick = {
+                navController.navigate(Screen.CountryListScreen.route)
+            }) {
+                Icon(Icons.Default.ArrowBack, null)
             }
-        )
-    }
+        }
+    )
+}
 
 /*
 @Composable

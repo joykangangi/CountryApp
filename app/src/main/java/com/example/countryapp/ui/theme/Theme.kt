@@ -5,26 +5,33 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorPalette = darkColors(
     primary = DarkBlue,
-    onPrimary = White,
-    secondary = DarkBlue,
-    onSecondary = White,
     primaryVariant = DarkBlue2,
-    background = DarkBlue3,
-    error = Color.Red
+    onPrimary = DarkTextWhite,
+    secondary = DarkTextGray,
+    onSecondary = LightTextGray,
+    background = DarkBlue,
+    onBackground = DarkTextWhite,
+    surface = DarkBlue,
+    onSurface = DarkTextWhite
 )
 
 private val LightColorPalette = lightColors(
-    primary = White,
-    primaryVariant = White2,
-    secondary = White,
-    onPrimary = Black2,
-    onSecondary = Black2,
-    secondaryVariant = White2,
-    error = Color.Red
+    primary = Color.White,
+    primaryVariant = LightTextBlack,
+    onPrimary = LightTextBlack,
+    secondary = DarkTextWhite,
+    onSecondary = Color.Black,
+    background = Color.White,
+    onBackground = LightTextBlack,
+    surface = DarkTextWhite,
+    onSurface = Color.Black,
+
 
     /* Other default colors to override
     background = Color.White,
@@ -44,6 +51,15 @@ fun CountryAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compos
         LightColorPalette
     }
 
+    val systemUiController = rememberSystemUiController()
+    LaunchedEffect(key1 = colors, block = {
+        systemUiController.setSystemBarsColor(
+            color = colors.background,
+            darkIcons = !darkTheme
+        )
+        //systemUiController.systemBarsDarkContentEnabled = false
+    })
+    
     MaterialTheme(
         colors = colors,
         typography = Typography,

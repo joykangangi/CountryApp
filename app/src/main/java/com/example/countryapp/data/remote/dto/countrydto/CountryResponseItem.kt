@@ -5,46 +5,6 @@ import com.example.countryapp.domain.model.Country
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-/**
- *
-fun getCurrencyProp1(currencies: Currencies): Map<String, *> {
-val nonNullCurrencies = currencies.let {
-val nonNullProperties = Currencies::class.memberProperties
-.filter { prop-> prop.get(it) != null }
-.map { propFiltered-> propFiltered.name to propFiltered.get(it) }
-.map { (name, value)-> name to value }
-
-nonNullProperties.toMap()
-}
-return nonNullCurrencies
-
-}
- *
- *
-fun Idd.toListIdd(idd: Idd): String {
-val iddNos = mutableListOf<String>()
-if (root != null && suffixes !=null) {
-iddNos.add(root + suffixes)
-}
-return iddNos.toString()
-}
- *
- *
- *
-fun toListLang(languages: Languages?): List<String> {
-val languageList = mutableListOf<String>()
-val properties = Languages::class.memberProperties
-for (language in properties) {
-//extracts the value of each property using the get function and casts it to a String
-val lang = languages?.let { language.get(it) } as String?
-if (lang != null) {
-languageList.add(lang)
-}
-}
-return languageList
-}
- */
-
 @JsonClass(generateAdapter = true)
 data class CountryResponseItem(
     @Json(name = "altSpellings")
@@ -137,6 +97,9 @@ fun CountryResponseItem.toCountry(): Country {
         region = region ?: "N/A",
         subregion = subregion ?: "N/A",
         timezones = timezones ?: emptyList(),
-        unMember = unMember
+        unMember = unMember,
+        borders = borders ?: emptyList(),
+        startOfWeek = startOfWeek ?: "N/A",
+        demonyms = demonyms?.eng?.m ?: "N/A"
     )
 }

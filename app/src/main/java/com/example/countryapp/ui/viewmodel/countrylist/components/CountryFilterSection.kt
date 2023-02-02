@@ -52,7 +52,6 @@ fun CountryFilterSection(modifier: Modifier) {
                 )
                 Text(text = "Filter")
             }
-
         }
     }
 }

@@ -45,7 +45,4 @@ class CountryDetailViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
-    fun setSelectedCountry(country: Country) {
-        _state.value = CountryDetailState(country = country)
-    }
 }

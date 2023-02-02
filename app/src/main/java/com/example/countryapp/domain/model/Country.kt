@@ -1,6 +1,5 @@
 package com.example.countryapp.domain.model
 
-import com.example.countryapp.data.remote.dto.countrydto.Currencies
 import com.example.countryapp.data.remote.dto.countrydto.Idd
 import com.example.countryapp.data.remote.dto.countrydto.Languages
 
@@ -26,7 +25,10 @@ data class Country(
     val languages: Languages?,
     val population: Int,
     val region: String,
+    val borders: List<String>,
     val subregion: String,
     val timezones: List<String>,
-    val unMember: Boolean?
+    val unMember: Boolean?,
+    val startOfWeek: String,
+    val demonyms: String
 )

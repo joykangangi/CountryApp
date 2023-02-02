@@ -46,20 +46,20 @@ fun CountryListItem(
             Text(
                 text = country.name,
                 style = MaterialTheme.typography.subtitle1,
-                color = MaterialTheme.colors.onPrimary
+                //color = MaterialTheme.colors.onPrimary
             )
             for (capital in country.capital) {
                 if (country.capital.size > 1) {
                     Text(
                         text = "$capital,",
                         style = MaterialTheme.typography.body2,
-                        color = MaterialTheme.colors.onSecondary
+                        //color = MaterialTheme.colors.onSecondary
                     )
                 } else {
                     Text(
                         text = capital,
                         style = MaterialTheme.typography.body2,
-                        color = MaterialTheme.colors.onSecondary
+                        //color = MaterialTheme.colors.onSecondary
                     )
                 }
 

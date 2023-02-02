@@ -129,7 +129,6 @@ fun TopAppBarExplore(isDarkTheme: Boolean, toggleTheme:()->Unit) {
         actions = {
             IconButton(
                 onClick = toggleTheme
-
             ) {
                 Icon(
                     painter = (if (isDarkTheme) painterResource(id = R.drawable.ic_dark_theme) else painterResource(

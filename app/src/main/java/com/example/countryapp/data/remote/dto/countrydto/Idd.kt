@@ -12,10 +12,10 @@ data class Idd(
     val suffixes: List<String?>?
 )
 
-fun toListIdd(idd: Idd): String {
+fun toStringIdd(idd: Idd): String {
     val iddNos = mutableListOf<String>()
     if (idd.root != null && idd.suffixes !=null) {
         iddNos.add(idd.root + idd.suffixes)
     }
-    return iddNos.toString()
+    return iddNos.toString().replace("[","").replace("]","")
 }
