@@ -3,6 +3,7 @@ package com.example.countryapp
 import android.app.Application
 import androidx.compose.runtime.mutableStateOf
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.*
 
 
 /**
@@ -10,14 +11,14 @@ import dagger.hilt.android.HiltAndroidApp
  */
 
 @HiltAndroidApp
-class CountryApplication: Application() {
+class CountryApplication : Application() {
 
     //should be saved in data store or cache for persistence
     val isDark = mutableStateOf(false)
 
-    fun toggleLightTheme() {
+    private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+
+    fun toggleLightTheme() = applicationScope.launch {
         isDark.value = !isDark.value
-
     }
-
 }
