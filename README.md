@@ -67,3 +67,21 @@ Each class has only one public function,i.e to execute the use case function
  ### Links
  - [Appetize Link V.0.0.0](https://appetize.io/app/6sb76yokly4ppcegmsxhoexjvm)
  - [Appetize Link v.1.0.0](https://appetize.io/app/m44ha2dvhb3fu5tlud3jrx45am?device=pixel4&osVersion=11.0&scale=75)
+ 
+ ### Screenshots
+ <table>
+  <tr>
+   <td><img src = "https://user-images.githubusercontent.com/64706463/217352436-c928abcc-beac-44db-ba28-4a642067b2d9.png" alt = "mainlight"></td>
+   <td><img src = "https://user-images.githubusercontent.com/64706463/217352414-654acbff-6a39-4e40-b75e-c099f868bb07.png" alt = "detaillight"></td>
+      
+  </tr> 
+  <tr>
+      <td><img src = "https://user-images.githubusercontent.com/64706463/217352442-1bce1bee-854a-4c23-b868-3d8611d05845.png" alt = "searchlight"></td>
+      <td><img src = "https://user-images.githubusercontent.com/64706463/217352391-941798a6-b524-4d31-a4ec-e20672c6f6e6.png" alt = "coalight"></td>
+  
+  </tr>
+      <td><img src = "https://user-images.githubusercontent.com/64706463/217352426-28cecdf5-da93-445b-96b0-8c22bf444baf.png" alt = "maindark"></td>
+      <td><img src = "https://user-images.githubusercontent.com/64706463/217352411-aa0e5f31-b2eb-41c1-83fb-edc4c4597685.png" alt = "detaildark"></td>
+  <tr>
+    
+</table>
