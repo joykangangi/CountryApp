@@ -1,6 +1,9 @@
 # CountryApp
 An android application built with Jetpack Compose, consuming the Countries API to display countries and details about them . Credits to HNGi9.
 
+### [Figma Design Link](https://www.figma.com/proto/v9AXj4VZNnx26fTthrPbhX/Explore?node-id=33%3A1390&starting-point-node-id=33%3A1390&scaling=scale-down&show-proto-sidebar=1)
+
+
 ### Features
 - Smooth display of Countries from the `API`
 - View Country's Details on click.
@@ -65,8 +68,8 @@ Each class has only one public function,i.e to execute the use case function
  - In future, one can watch out for such anomalies in the endpoints by using [Postman](https://www.postman.com/) to test the API. Alternatively, go through the API documentation to see for yourself.
  ##### The application is still a work in progress and will add the respective features as time goes by. Run the following links, preferrably the latest, and feel free to clone and adjust the applications to your liking.
  ### Links
- - [Appetize Link V.0.0.0](https://appetize.io/app/6sb76yokly4ppcegmsxhoexjvm)
- - [Appetize Link v.1.0.0](https://appetize.io/app/m44ha2dvhb3fu5tlud3jrx45am?device=pixel4&osVersion=11.0&scale=75)
+ - Second Submission [Appetize Link V.0.0.0](https://appetize.io/app/6sb76yokly4ppcegmsxhoexjvm)
+ - First Submission. [Appetize Link v.1.0.0](https://appetize.io/app/m44ha2dvhb3fu5tlud3jrx45am?device=pixel4&osVersion=11.0&scale=75)
  
  ### Screenshots
  <table>
