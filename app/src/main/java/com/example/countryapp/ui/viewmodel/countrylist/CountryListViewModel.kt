@@ -13,18 +13,16 @@ import com.example.countryapp.util.Constants.DELAY
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 //VM-maintain state
 
 @HiltViewModel
 class CountryListViewModel @Inject constructor
-    (private val getCountriesUseCase: GetCountriesUseCase): ViewModel() {
+    (private val getCountriesUseCase: GetCountriesUseCase) : ViewModel() {
 
 
     //backing property
@@ -34,15 +32,15 @@ class CountryListViewModel @Inject constructor
     private var _detailState = mutableStateOf(CountryDetailState())
 
     private val filteredList = mutableListOf<Country>()
-
+    //private lateinit var borderMap: MutableMap<String, String>
 
     init {
         getCountries()
     }
 
-    private fun getCountries() {
-        getCountriesUseCase().onEach { result->
-            when(result) {
+  private fun getCountries() {
+        getCountriesUseCase().onEach { result ->
+            when (result) {
                 is Resource.Error -> {
                     _state.value = CountryListState(error = HTTPERRORMESSAGE)
                 }
@@ -51,7 +49,7 @@ class CountryListViewModel @Inject constructor
                 }
                 is Resource.Success -> {
                     val groupedCountries = result.data?.sortedBy { it.name }?.groupBy { it.name[0] }
-                    _state.value = CountryListState(countries = groupedCountries )
+                    _state.value = CountryListState(countries = groupedCountries)
                     result.data?.let { filteredList.addAll(it.toList()) }
                 }
             }
@@ -85,22 +83,18 @@ class CountryListViewModel @Inject constructor
     ) {
         viewModelScope.launch {
             val newCountryList: List<Country> =
-                filteredList.filter {country ->
+                filteredList.filter { country ->
                     country.name.lowercase().contains(query)
                 }
 
             _state.value = _state.value.copy(countries = newCountryList.sortedBy {
-                it.name }.groupBy { it.name[0] })
+                it.name
+            }.groupBy { it.name[0] })
         }
     }
+
     fun setSelectedCountry(country: Country) {
         _detailState.value = CountryDetailState(country = country)
-    }
-
-
-    fun updateTheme(darkMode: Boolean=_state.value.darkTheme) = viewModelScope.launch {
-        val currentTheme = !darkMode
-        _state.value = _state.value.copy(darkTheme = currentTheme)
-        Log.i("CountryListViewModel", "isDarkTheme = ${_state.value.darkTheme}")
+        Log.i("CountryListViewModel", "Detail state = ${CountryDetailState()}")
     }
 }

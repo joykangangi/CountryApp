@@ -1,12 +1,10 @@
 package com.example.countryapp.ui.viewmodel.countrylist
 
-import android.util.Log
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -29,7 +27,6 @@ import com.example.countryapp.ui.viewmodel.CountryListEvents
 import com.example.countryapp.ui.viewmodel.countrylist.components.CountryFilterSection
 import com.example.countryapp.ui.viewmodel.countrylist.components.CountryListItem
 import com.example.countryapp.ui.viewmodel.countrylist.components.SearchViewBar
-import com.example.countryapp.util.Resource
 
 @Composable
 fun CountryListScreen(
@@ -38,7 +35,6 @@ fun CountryListScreen(
     isDarkTheme: Boolean,
     toggleTheme: () -> Unit
 ) {
-
     val state = viewModel.state.value
 
     Column(

@@ -28,14 +28,14 @@ fun CountryDetailScreen(
     navController: NavController,
     viewModel: CountryDetailViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state.value
+    val detailState = viewModel.state.value
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        state.country?.let { countryDetail: Country ->
+        detailState.country?.let { countryDetail: Country ->
             TopAppBarCountry(country = countryDetail, navController = navController)
 
             CountryImagePaging(countryDetail = countryDetail, modifier = modifier.padding(3.dp))
@@ -48,38 +48,64 @@ fun CountryDetailScreen(
 
                     Spacer(modifier = Modifier.height(10.dp))
 
-                    DetailsText(title = "Population", details = countryDetail.population.formatCommaSeparator())
+                    DetailsText(
+                        title = "Population",
+                        details = countryDetail.population.formatCommaSeparator()
+                    )
                     DetailsText(title = "Region", details = countryDetail.region)
                     DetailsText(title = "Sub-Region", details = countryDetail.subregion)
                     DetailsText(title = "Capital", details = countryDetail.capital.first())
 
                     Spacer(modifier = Modifier.height(10.dp))
 
-                    DetailsText(title = "Official Language(s)", details = cleanList(toListLang(countryDetail.languages)))
+                    DetailsText(
+                        title = "Official Language(s)",
+                        details = cleanList(toListLang(countryDetail.languages))
+                    )
                     DetailsText(title = "Area", details = countryDetail.area ?: "N/A")
                     DetailsText(title = "Currency Name", details = countryDetail.currencyName)
-                    DetailsText(title = "Currency Symbol", details = countryDetail.currencySymbol )
+                    DetailsText(
+                        title = "Currency Symbol",
+                        details = countryDetail.currencySymbol
+                    )
 
                     Spacer(modifier = Modifier.height(10.dp))
 
-                    DetailsText(title = "Landlocked", details = countryDetail.landlocked ?: false.toString().firstCapital())
-                    DetailsText(title = "Time Zone", details = cleanList(countryDetail.timezones) )
-                    DetailsText(title = "Dialing Code", details = toStringIdd(countryDetail.idd) )
-                    DetailsText(title = "Car Side", details = countryDetail.carSide ?: "N/A".firstCapital())
+                    DetailsText(
+                        title = "Landlocked",
+                        details = countryDetail.landlocked.toString().firstCapital()
+                    )
+                    DetailsText(
+                        title = "Time Zone",
+                        details = cleanList(countryDetail.timezones)
+                    )
+                    DetailsText(
+                        title = "Dialing Code",
+                        details = toStringIdd(countryDetail.idd)
+                    )
+                    DetailsText(
+                        title = "Car Side",
+                        details = countryDetail.carSide.toString().firstCapital()
+                    )
 
                     Spacer(modifier = Modifier.height(10.dp))
 
-                    DetailsText(title = "Un Member", details = if (countryDetail.unMember == true) "Yes" else "No")
-                    DetailsText(title = "Neighboring Countries", details = cleanList(countryDetail.borders) )
+                    DetailsText(
+                        title = "Un Member",
+                        details = if (countryDetail.unMember == true) "Yes" else "No"
+                    )
                     DetailsText(title = "Demonyms", details = countryDetail.demonyms)
-                    DetailsText(title = "Start of Week", details = countryDetail.startOfWeek.firstCapital() )
+                    DetailsText(
+                        title = "Start of Week",
+                        details = countryDetail.startOfWeek.firstCapital()
+                    )
 
                 }
 
                 //if there is an error message
-                if (state.error.isNotBlank()) {
+                if (detailState.error.isNotBlank()) {
                     Text(
-                        text = state.error,
+                        text = detailState.error,
                         color = MaterialTheme.colors.error,
                         textAlign = TextAlign.Center,
                         modifier = Modifier
@@ -89,7 +115,7 @@ fun CountryDetailScreen(
                     )
                 }
 
-                if (state.isLoading) {
+                if (detailState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.align(Alignment.Center),
                         color = MaterialTheme.colors.onSecondary

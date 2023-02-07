@@ -1,6 +1,6 @@
 package com.example.countryapp.data.remote.dto.countrydto
 
-
+import com.example.countryapp.domain.model.Borders
 import com.example.countryapp.domain.model.Country
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -100,6 +100,7 @@ fun CountryResponseItem.toCountry(): Country {
         unMember = unMember,
         borders = borders ?: emptyList(),
         startOfWeek = startOfWeek ?: "N/A",
-        demonyms = demonyms?.eng?.m ?: "N/A"
+        demonyms = demonyms?.eng?.m ?: "N/A",
+        code = cioc ?:"N/A"
     )
 }

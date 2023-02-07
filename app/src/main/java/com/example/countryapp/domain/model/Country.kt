@@ -30,5 +30,17 @@ data class Country(
     val timezones: List<String>,
     val unMember: Boolean?,
     val startOfWeek: String,
-    val demonyms: String
+    val demonyms: String,
+    val code: String
+)
+fun Country.getBorder() : Borders {
+    return Borders(
+        code = code,
+        name = name
+    )
+}
+
+data class Borders(
+    val code: String,
+    val name: String
 )

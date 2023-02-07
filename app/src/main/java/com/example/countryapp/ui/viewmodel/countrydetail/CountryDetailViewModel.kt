@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.countryapp.domain.model.Country
 import com.example.countryapp.data.repository.use_cases.GetCountryUseCase
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Resource
@@ -19,20 +18,20 @@ import javax.inject.Inject
 class CountryDetailViewModel @Inject constructor(
     private val getCountryUseCase: GetCountryUseCase,
     savedStateHandle: SavedStateHandle
-): ViewModel() {
+) : ViewModel() {
     //backing property
     private var _state = mutableStateOf(CountryDetailState())
     val state: State<CountryDetailState> = _state
 
     init {
-        savedStateHandle.get<String>("name")?.let { name->
+        savedStateHandle.get<String>("name")?.let { name ->
             getCountry(name)
         }
     }
 
     private fun getCountry(name: String) {
-        getCountryUseCase(name).onEach { result->
-            when(result) {
+        getCountryUseCase(name).onEach { result ->
+            when (result) {
                 is Resource.Error -> {
                     _state.value = CountryDetailState(error = HTTPERRORMESSAGE)
                 }
