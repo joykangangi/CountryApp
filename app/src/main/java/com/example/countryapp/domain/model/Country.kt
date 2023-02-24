@@ -33,7 +33,7 @@ data class Country(
     val demonyms: String,
     val code: String
 )
-fun Country.getBorder() : Borders {
+fun Country.getBorder(code: String) :Borders{
     return Borders(
         code = code,
         name = name

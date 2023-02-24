@@ -1,6 +1,5 @@
 package com.example.countryapp.data.remote.dto.countrydto
 
-import com.example.countryapp.domain.model.Borders
 import com.example.countryapp.domain.model.Country
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -98,7 +97,7 @@ fun CountryResponseItem.toCountry(): Country {
         subregion = subregion ?: "N/A",
         timezones = timezones ?: emptyList(),
         unMember = unMember,
-        borders = borders ?: emptyList(),
+        borders = borders ?: listOf("Island"),
         startOfWeek = startOfWeek ?: "N/A",
         demonyms = demonyms?.eng?.m ?: "N/A",
         code = cioc ?:"N/A"

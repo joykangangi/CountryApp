@@ -32,7 +32,6 @@ private fun collectMap() = viewModelScope.launch {
 
 }
 
-
 fun codeToName(codes: List<String>): List<String> {
     val codeList = mutableListOf<String>()
     for (code in codes) {

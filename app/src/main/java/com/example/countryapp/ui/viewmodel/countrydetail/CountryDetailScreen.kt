@@ -18,9 +18,11 @@ import com.example.countryapp.data.remote.dto.countrydto.toListLang
 import com.example.countryapp.data.remote.dto.countrydto.toStringIdd
 import com.example.countryapp.domain.model.Country
 import com.example.countryapp.ui.navigation.Screen
+import com.example.countryapp.ui.util.CountryCodeConverter.iso3ToIso2Code
 import com.example.countryapp.ui.util.cleanList
 import com.example.countryapp.ui.util.firstCapital
 import com.example.countryapp.ui.util.formatCommaSeparator
+
 
 @Composable
 fun CountryDetailScreen(
@@ -99,7 +101,11 @@ fun CountryDetailScreen(
                         title = "Start of Week",
                         details = countryDetail.startOfWeek.firstCapital()
                     )
-
+                    DetailsText(
+                        title = "Borders",
+                        details = iso3ToIso2Code(countryDetail.borders)
+                    )
+                    Spacer(modifier = modifier.height(3.dp))
                 }
 
                 //if there is an error message

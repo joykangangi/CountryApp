@@ -13,9 +13,11 @@ import com.example.countryapp.util.Constants.DELAY
 import com.example.countryapp.util.Constants.HTTPERRORMESSAGE
 import com.example.countryapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 //VM-maintain state
@@ -32,10 +34,10 @@ class CountryListViewModel @Inject constructor
     private var _detailState = mutableStateOf(CountryDetailState())
 
     private val filteredList = mutableListOf<Country>()
-    //private lateinit var borderMap: MutableMap<String, String>
+    //private var borderMap: MutableMap<String, String>? = null
 
-    init {
-        getCountries()
+   init {
+      getCountries()
     }
 
   private fun getCountries() {
@@ -97,4 +99,22 @@ class CountryListViewModel @Inject constructor
         _detailState.value = CountryDetailState(country = country)
         Log.i("CountryListViewModel", "Detail state = ${CountryDetailState()}")
     }
+
+    /*private fun collectMap() = viewModelScope.launch {
+        val countries: List<Country>? = _state.value.countries?.values?.first()
+        if (countries != null) {
+            for (country in countries) {
+                borderMap?.set(country.code, country.name)
+            }
+        }
+        Log.i("CountryListViewModel", "Map= $borderMap")
+    }
+
+    fun codeToName(codes: List<String>): List<String> {
+        val codeList = mutableListOf<String>()
+        for (code in codes) {
+            borderMap?.let { codeList.add(it.getValue(code)) }
+        }
+        return codeList
+    }*/
 }
